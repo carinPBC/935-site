@@ -30,9 +30,9 @@
   <!-- ON AIR BAR -->
   <div class="on-air-bar" id="on-air-bar" style="display:none;padding-bottom:12px;">
     <span class="on-air-badge">On Air Now</span>
-    <span class="on-air-show" id="on-air-show"></span>
-    <span class="on-air-host" id="on-air-host"></span>
-    <span class="on-air-time" id="on-air-time"></span>
+    <span class="on-air-show" id="on-air-show" style="margin-left:8px;"></span>
+    <span id="on-air-track" style="font-size:13px;color:rgba(255,255,255,0.7);margin-left:12px;font-style:italic;"></span>
+    <span class="on-air-time" id="on-air-time" style="margin-left:12px;"></span>
     <div style="display:flex;gap:10px;margin-left:auto;flex-shrink:0;align-items:center;">
       <a href="https://player.cloudradionetwork.com/classicrock935/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;background:#ed1c24;color:#fff;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;text-decoration:none;white-space:nowrap;">&#9654; &#9654; Listen Live</a>
       <button id="watch-live-btn" style="display:none;align-items:center;gap:6px;background:rgba(255,255,255,.15);color:#fff;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;cursor:pointer;white-space:nowrap;border:1px solid rgba(255,255,255,.3);">&#128250; Watch Live</button>
@@ -204,8 +204,17 @@
         }
         function fmtH(h) { if(h===0)return'12:00 AM'; if(h===12)return'12:00 PM'; return h<12?h+':00 AM':(h-12)+':00 PM'; }
         document.getElementById('on-air-show').textContent = current.name;
-        document.getElementById('on-air-host').textContent = '';
-        document.getElementById('on-air-time').textContent = fmtH(current.start_hour) + ' – ' + fmtH(current.end_hour);
+        document.getElementById('on-air-time').textContent = '';
+        // Fetch current track from CRN and show in on-air bar
+        fetch('https://pbc-cms-production.up.railway.app/api/recent-tracks/935?ts=' + Date.now())
+          .then(function(r) { return r.json(); })
+          .then(function(tracks) {
+            if (tracks && tracks.length) {
+              var t = tracks[0];
+              var trackEl = document.getElementById('on-air-track');
+              if (trackEl) trackEl.textContent = '♫ ' + t.artist + ' — ' + t.title;
+            }
+          }).catch(function(){});
         if (bar) bar.style.display = 'flex';
         if (watchBtn) {
           if (current.video_url) {
@@ -222,7 +231,7 @@
       }).catch(function(){});
     }
     updateHomeOnAirBar();
-    if (!window.CRR_HOME_ON_AIR_TIMER) window.CRR_HOME_ON_AIR_TIMER = setInterval(updateHomeOnAirBar, 60000);
+    if (!window.CRR_HOME_ON_AIR_TIMER) window.CRR_HOME_ON_AIR_TIMER = setInterval(updateHomeOnAirBar, 30000);
     window.addEventListener('focus', updateHomeOnAirBar);
     document.addEventListener('visibilitychange', function(){ if (!document.hidden) updateHomeOnAirBar(); });
 

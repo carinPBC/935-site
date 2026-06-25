@@ -338,10 +338,10 @@
         var onAirHtml = '<div class="on-air-bar" id="on-air-bar" style="display:none;padding-bottom:12px;">'
           + '<span class="on-air-badge">On Air Now</span>'
           + '<span class="on-air-show" id="on-air-show"></span>'
-          + '<span class="on-air-host" id="on-air-host"></span>'
+          + '<span id="on-air-track" style="font-size:13px;color:rgba(255,255,255,0.7);margin-left:12px;font-style:italic;"></span>'
           + '<span class="on-air-time" id="on-air-time"></span>'
           + '<div style="display:flex;gap:10px;margin-left:auto;flex-shrink:0;align-items:center;">'
-          + '<a href="#" data-listen="kahm" style="display:inline-flex;align-items:center;gap:6px;background:#487ea6;color:#fff;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;text-decoration:none;white-space:nowrap;">&#9654; Listen Live</a>'
+          + '<a href="#" data-listen="kahm" style="display:inline-flex;align-items:center;gap:6px;background:#ed1c24;color:#fff;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;text-decoration:none;white-space:nowrap;">&#9654; Listen Live</a>'
           + '<button id="watch-live-btn" style="display:none;align-items:center;gap:6px;background:rgba(255,255,255,.15);color:#fff;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;cursor:pointer;white-space:nowrap;border:1px solid rgba(255,255,255,.3);">&#128250; Watch Live</button>'
           + '</div>'
           + '</div>';
@@ -507,8 +507,9 @@
     if (!weatherBand) return;
 
     var onAirVisible = onAirBar && window.getComputedStyle(onAirBar).display !== 'none';
-    weatherBand.style.top = (NAV_H + (onAirVisible ? ONAIR_H : 0)) + 'px';
-    if (onAirBar) onAirBar.style.top = NAV_H + 'px';
+    // Nav is not sticky on 935 - don't set top positions
+    // weatherBand.style.top = (NAV_H + (onAirVisible ? ONAIR_H : 0)) + 'px';
+    // if (onAirBar) onAirBar.style.top = NAV_H + 'px';
   }
 
   document.addEventListener('DOMContentLoaded', setStickyOffsets);
