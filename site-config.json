@@ -3,7 +3,7 @@
     "name": "93.5 Classic Rock",
     "tagline": "Prescott's Classic Rock",
     "stationId": "935",
-    "logo": "images/logo-935.png",
+    "logo": "images/logo-935-cream.svg",
     "logoWhite": "images/logo-kahm.png",
     "favicon": "images/logo-kahm.png",
     "apiBase": "https://pbc-cms-production.up.railway.app",
