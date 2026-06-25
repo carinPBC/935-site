@@ -385,9 +385,13 @@
         '</span>';
 
       // Music note
-      html += '<span style="font-size:12px;color:' +
-        (isNow ? '#ed1c24' : 'rgba(255,255,255,0.2)') +
-        ';flex-shrink:0;">&#9835;</span>';
+      if (t.image_url) {
+        html += '<img src="' + t.image_url + '" style="width:32px;height:32px;border-radius:3px;object-fit:cover;flex-shrink:0;" onerror="this.style.display='none'" />';
+      } else {
+        html += '<span style="font-size:12px;color:' +
+          (isNow ? '#ed1c24' : 'rgba(255,255,255,0.2)') +
+          ';flex-shrink:0;">&#9835;</span>';
+      }
 
       // Track info
       html += '<div style="flex:1;min-width:0;">';
@@ -423,7 +427,7 @@
         renderTracks(tracks.map(function(t, i) {
           return {
             meta: t.artist.toUpperCase() + ' - ' + t.title.toUpperCase(),
-            image_url: null,
+            image_url: t.image_url || null,
             created_at: null,
             localtime: t.localtime,
             is_current: i === 0
