@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="../images/logo-935.png" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="../images/logo-935-cream.svg" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shows — 93.5 Classic Rock</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/935-base.css?v=3" />
-  <link rel="stylesheet" href="../css/935.css?v=4" />
+  <link rel="stylesheet" href="../css/935.css?v=5" />
   <style id="nav-critical">
     nav.main-nav{background:#ffffff !important;position:sticky !important;top:0 !important;z-index:9999 !important;}
     .main-nav-inner{width:100%;padding:0 48px;display:flex;align-items:center;justify-content:space-between;min-height:100px;}
@@ -57,7 +57,7 @@
     .show-card-times {
       font-size: 11px;
       font-weight: 700;
-      color: #ed1c24;
+      color: #a32600;
       text-transform: uppercase;
       letter-spacing: .06em;
       margin-top: 3px;
@@ -95,7 +95,7 @@
       gap: 6px;
       font-size: 12px;
       font-weight: 700;
-      color: #ed1c24;
+      color: #a32600;
       text-decoration: none;
       text-transform: uppercase;
       letter-spacing: .05em;
@@ -103,10 +103,10 @@
     .show-card-link:hover { text-decoration: underline; }
 
     .shows-toolbar { max-width: var(--max-width); margin: 0 auto; padding: 24px 48px 0; display:flex; justify-content:flex-end; gap:10px; }
-    .shows-toggle { border:1.5px solid #ed1c24; background:#fff; color:#ed1c24; border-radius:999px; padding:8px 16px; font-size:12px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; cursor:pointer; }
-    .shows-toggle.active { background:#ed1c24; color:#fff; }
+    .shows-toggle { border:1.5px solid #a32600; background:#fff; color:#a32600; border-radius:999px; padding:8px 16px; font-size:12px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; cursor:pointer; }
+    .shows-toggle.active { background:#a32600; color:#fff; }
     .schedule-group { max-width: var(--max-width); margin: 0 auto; padding: 20px 48px 0; }
-    .schedule-group-title { font-size:18px; font-weight:900; color:#111111; text-transform:uppercase; letter-spacing:.06em; border-bottom:3px solid #ed1c24; padding-bottom:10px; margin-bottom:4px; }
+    .schedule-group-title { font-size:18px; font-weight:900; color:#111111; text-transform:uppercase; letter-spacing:.06em; border-bottom:3px solid #a32600; padding-bottom:10px; margin-bottom:4px; }
     .schedule-group .shows-grid { padding: 20px 0 28px; }
     @media (max-width: 768px) {
       .shows-grid { padding: 24px 16px; grid-template-columns: 1fr 1fr; }
@@ -203,7 +203,7 @@
       return '<div class="show-card">'
         + (imgSrc ? '<div class="show-card-img-wrap"><img src="'+imgSrc+'" alt="'+s.name+'" onerror="this.parentNode.style.display=\'none\'" /></div>' : '')
         + '<div class="show-card-header">'
-        + '<div class="show-color-bar" style="background:'+(s.color||'#ed1c24')+';"></div>'
+        + '<div class="show-color-bar" style="background:'+(s.color||'#a32600')+';"></div>'
         + '<div><div class="show-card-name">'+s.name+'</div>'
         + (times ? '<div class="show-card-times">'+times+'</div>' : '')
         + '</div></div>'
@@ -256,7 +256,7 @@
         if (btn) btn.onclick = function(){ scheduleMode = !scheduleMode; render(); };
       })
       .catch(function() {
-        document.getElementById('shows-content').innerHTML = '<div style="text-align:center;padding:48px;color:#ed1c24;">Could not load shows.</div>';
+        document.getElementById('shows-content').innerHTML = '<div style="text-align:center;padding:48px;color:#a32600;">Could not load shows.</div>';
       });
   })();
   </script>

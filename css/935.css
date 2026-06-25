@@ -2,8 +2,8 @@
 body { background: #f5f5f5 !important; }
 
 :root {
-  --accent:    #ed1c24;
-  --accent2:   #b5161c;
+  --accent:    #a32600;
+  --accent2:   #7a1d00;
   --black:     #291000;
   --black2:    #291000;
   --white-bg:  #f5f5f5;
@@ -14,34 +14,34 @@ body { background: #f5f5f5 !important; }
 nav.main-nav { background: #ffffff !important; border-bottom: none !important; }
 .nav-logo img { height: 120px; }
 .nav-links li a { color: #291000 !important; }
-.nav-links li a:hover { color: #ed1c24 !important; }
-.nav-links li a.active { color: #ed1c24 !important; border-bottom-color: #ed1c24 !important; }
+.nav-links li a:hover { color: #a32600 !important; }
+.nav-links li a.active { color: #a32600 !important; border-bottom-color: #a32600 !important; }
 .nav-social a { color: #291000 !important; }
-.nav-social a:hover { color: #ed1c24 !important; }
+.nav-social a:hover { color: #a32600 !important; }
 
 /* Listen Live button */
-.listen-btn { background: #ed1c24 !important; }
-.listen-btn:hover { background: #b5161c !important; }
-.hero-listen { background: #ed1c24 !important; }
-.hero-listen:hover { background: #b5161c !important; }
+.listen-btn { background: #a32600 !important; }
+.listen-btn:hover { background: #7a1d00 !important; }
+.hero-listen { background: #a32600 !important; }
+.hero-listen:hover { background: #7a1d00 !important; }
 
 /* On Air bar — BLACK */
-.on-air-bar { background: #291000 !important; padding: 10px 24px !important; min-height: 44px; border-top: 3px solid #ed1c24; }
-.on-air-badge { background: #ed1c24 !important; }
+.on-air-bar { background: #291000 !important; padding: 10px 24px !important; min-height: 44px; border-top: 3px solid #a32600; }
+.on-air-badge { background: #a32600 !important; }
 
 /* Weather band — BLACK */
 #crr-weather-band, #crr-weather-report { background: #291000 !important; }
 
 /* Section accents */
-.section-link { color: #ed1c24 !important; }
-.news-card-cat { color: #ed1c24 !important; }
-.schedule-time { color: #ed1c24 !important; }
-.schedule-card { border-left-color: #ed1c24 !important; }
-.show-card-host { color: #ed1c24 !important; }
+.section-link { color: #a32600 !important; }
+.news-card-cat { color: #a32600 !important; }
+.schedule-time { color: #a32600 !important; }
+.schedule-card { border-left-color: #a32600 !important; }
+.show-card-host { color: #a32600 !important; }
 
 /* Footer — BLACK */
 footer { background: #291000 !important; }
-.footer-col-title { border-bottom-color: #ed1c24 !important; }
+.footer-col-title { border-bottom-color: #a32600 !important; }
 .footer-contact a { color: #ff6b6e !important; }
 
 /* Sidebar — BLACK */
@@ -118,7 +118,7 @@ body { background: #f5f5f5 !important; }
   font-weight: 800 !important;
   letter-spacing: .1em !important;
   text-transform: uppercase !important;
-  color: #ed1c24 !important;
+  color: #a32600 !important;
   margin-bottom: 6px !important;
 }
 .news-card-date,
@@ -126,6 +126,6 @@ body { background: #f5f5f5 !important; }
 
 /* Section header */
 #news-section .section-header {
-  border-bottom: 2px solid #ed1c24 !important;
+  border-bottom: 2px solid #a32600 !important;
 }
 #news-section .section-title { color: #291000 !important; }

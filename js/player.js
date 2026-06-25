@@ -265,7 +265,7 @@
       </div>
     </div>
     <div id="crr-on-air-bar">
-      <span id="crr-on-air-show">KAHM FM 102.1</span>
+      <span id="crr-on-air-show">93.5 Classic Rock</span>
       <button id="crr-watch-live-btn">&#128250; Watch Live</button>
     </div>
     <div id="crr-player-body">
@@ -378,7 +378,7 @@
       // Load StreamGuys player as the visible audio player
       if (!skipAudio) {
         sgIframe.src = STREAMGUYS_URL;
-        sgIframe.style.height = '160px';
+        sgIframe.style.height = '220px';
         // Hide custom audio controls — StreamGuys handles playback
         var audioMode = document.getElementById('crr-audio-mode');
         if (audioMode) audioMode.style.display = 'none';
@@ -434,7 +434,7 @@
     currentVideoUrl = null;
     // Restore StreamGuys player
     if (isOpen) {
-      sgIframe.style.height = '160px';
+      sgIframe.style.height = '220px';
       var audioMode = document.getElementById('crr-audio-mode');
       if (audioMode) audioMode.style.display = 'none';
     }
@@ -499,7 +499,7 @@
             if (isVideoMode) switchToAudio();
           }
         } else {
-          onAirShow.textContent = 'KAHM FM 102.1';
+          onAirShow.textContent = '93.5 Classic Rock';
           watchBtn.style.display = 'none';
           if (isVideoMode) switchToAudio();
         }

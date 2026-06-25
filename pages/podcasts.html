@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="../images/logo-935.png" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="../images/logo-935-cream.svg" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Podcasts — 93.5 Classic Rock</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/935-base.css?v=3" />
-  <link rel="stylesheet" href="../css/935.css?v=4" />
+  <link rel="stylesheet" href="../css/935.css?v=5" />
   <style id="nav-critical">
     nav.main-nav{background:#ffffff !important;position:sticky !important;top:0 !important;z-index:9999 !important;}
     .main-nav-inner{width:100%;padding:0 48px;display:flex;align-items:center;justify-content:space-between;min-height:100px;}
@@ -35,7 +35,7 @@
     .pod-date{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6c8ea3;}
     .pod-title{font-size:14px;font-weight:700;color:#111111;line-height:1.4;flex:1;}
     .pod-desc{font-size:12px;color:#546e7a;line-height:1.5;margin-top:2px;}
-    .pod-listen{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:11px;font-weight:700;color:#ed1c24;text-transform:uppercase;letter-spacing:.05em;}
+    .pod-listen{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:11px;font-weight:700;color:#a32600;text-transform:uppercase;letter-spacing:.05em;}
     .no-results{text-align:center;padding:60px 24px;color:#546e7a;font-size:15px;}
 
   </style>
@@ -97,7 +97,7 @@ function renderSection(s, i) {
   // Separator
   var sepHtml = '';
   if (s.separator) {
-    var sepColor = s.separator_color || '#ed1c24';
+    var sepColor = s.separator_color || '#a32600';
     var sepAlign = s.heading_align || 'left';
     var sepMargin = sepAlign === 'center' ? '10px auto 0' : sepAlign === 'right' ? '10px 0 0 auto' : '10px 0 0';
     sepHtml = '<div style="width:48px;height:4px;background:' + sepColor + ';margin:' + sepMargin + ';"></div>';
@@ -218,7 +218,7 @@ fetch(API_URL+"/api/pages/podcasts").then(function(r){return r.json();}).then(fu
           + '<div style="padding:16px;">'
           + '<div style="font-size:15px;font-weight:700;color:#111111;margin-bottom:6px;">' + show.show_name + '</div>'
           + (show.description ? '<div style="font-size:12px;color:#546e7a;line-height:1.5;margin-bottom:10px;">' + show.description + '</div>' : '')
-          + '<span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#ed1c24;text-transform:uppercase;letter-spacing:.05em;">&#9654; Watch / Listen</span>'
+          + '<span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#a32600;text-transform:uppercase;letter-spacing:.05em;">&#9654; Watch / Listen</span>'
           + '</div></a>';
       }).join('');
     }).catch(function(){});
@@ -260,7 +260,7 @@ fetch(API_URL+"/api/pages/podcasts").then(function(r){return r.json();}).then(fu
         a.addEventListener('mouseover', function(){ this.style.background='rgba(255,255,255,.15)'; });
         a.addEventListener('mouseout',  function(){ this.style.background='rgba(255,255,255,.08)'; });
         a.addEventListener('click', function(){ document.getElementById('pbc-search-overlay').style.display='none'; });
-        a.innerHTML = '<div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#ed1c24;margin-bottom:4px;">'+h.type+'</div>'
+        a.innerHTML = '<div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#a32600;margin-bottom:4px;">'+h.type+'</div>'
           + '<div style="font-size:15px;font-weight:600;color:#fff;margin-bottom:3px;">'+h.label+'</div>'
           + (h.sub ? '<div style="font-size:12px;color:rgba(255,255,255,.55);">'+h.sub+'</div>' : '');
         results.appendChild(a);

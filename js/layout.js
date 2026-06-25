@@ -341,7 +341,7 @@
           + '<span id="on-air-track" style="font-size:13px;color:rgba(255,255,255,0.7);margin-left:12px;font-style:italic;"></span>'
           + '<span class="on-air-time" id="on-air-time"></span>'
           + '<div style="display:flex;gap:10px;margin-left:auto;flex-shrink:0;align-items:center;">'
-          + '<a href="#" data-listen="kahm" style="display:inline-flex;align-items:center;gap:6px;background:#ed1c24;color:#fff;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;text-decoration:none;white-space:nowrap;">&#9654; Listen Live</a>'
+          + '<a href="#" data-listen="kahm" style="display:inline-flex;align-items:center;gap:6px;background:#a32600;color:#fff;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;text-decoration:none;white-space:nowrap;">&#9654; Listen Live</a>'
           + '<button id="watch-live-btn" style="display:none;align-items:center;gap:6px;background:rgba(255,255,255,.15);color:#fff;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;cursor:pointer;white-space:nowrap;border:1px solid rgba(255,255,255,.3);">&#128250; Watch Live</button>'
           + '</div>'
           + '</div>';

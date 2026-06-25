@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="../images/logo-935.png" />
+  <link rel="icon" type="image/png" href="../images/logo-935-cream.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Article &mdash; 93.5 Classic Rock</title>
   <!-- Open Graph — updated by JS when article loads -->
@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/935-base.css?v=3" />
-  <link rel="stylesheet" href="../css/935.css?v=4" />
+  <link rel="stylesheet" href="../css/935.css?v=5" />
   <style id="nav-critical">
     nav.main-nav{background:#ffffff !important;position:sticky !important;top:0 !important;z-index:9999 !important;}
     .main-nav-inner{width:100%;padding:0 48px;display:flex;align-items:center;justify-content:space-between;min-height:100px;}
@@ -31,9 +31,9 @@
   </style>
   <style>
     .article-wrap { max-width: 860px; margin: 0 auto; padding: 48px 24px; }
-    .article-back { display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#ed1c24;text-transform:uppercase;letter-spacing:.05em;text-decoration:none;margin-bottom:28px; }
+    .article-back { display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#a32600;text-transform:uppercase;letter-spacing:.05em;text-decoration:none;margin-bottom:28px; }
     .article-back:hover { color:#315f83; }
-    .article-cat { font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#ed1c24;margin-bottom:10px; }
+    .article-cat { font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#a32600;margin-bottom:10px; }
     .article-headline { font-size:clamp(26px,4vw,40px);font-weight:900;color:#111111;line-height:1.15;margin-bottom:16px; }
     .article-meta { display:flex;align-items:center;gap:16px;font-size:13px;color:#546e7a;margin-bottom:28px;padding-bottom:20px;border-bottom:2px solid #e8ecf0;flex-wrap:wrap; }
     .article-img { width:100%;border-radius:8px;margin-bottom:28px;max-height:400px;object-fit:contain;background:#e8ecf0;display:block; }
@@ -84,7 +84,7 @@
           shareBar.innerHTML = '<span style="font-size:12px;font-weight:700;color:#546e7a;text-transform:uppercase;letter-spacing:.05em;">Share:</span>'
             + '<a href="https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(shareUrl)+'" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:#1877f2;color:#fff;border-radius:5px;font-size:12px;font-weight:700;text-decoration:none;">Facebook</a>'
             + '<a href="https://twitter.com/intent/tweet?url='+encodeURIComponent(shareUrl)+'&text='+encodeURIComponent(article.headline)+'" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:#000;color:#fff;border-radius:5px;font-size:12px;font-weight:700;text-decoration:none;">&#120143; / Twitter</a>'
-            + '<button onclick="navigator.clipboard.writeText(window.location.href).then(function(){this.textContent=\'✓ Copied!\';setTimeout(function(){document.querySelector(\'.share-copy-btn\').textContent=\'Copy Link\'},2000)}.bind(this))" class="share-copy-btn" style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:#ed1c24;color:#fff;border:none;border-radius:5px;font-size:12px;font-weight:700;cursor:pointer;">Copy Link</button>';
+            + '<button onclick="navigator.clipboard.writeText(window.location.href).then(function(){this.textContent=\'✓ Copied!\';setTimeout(function(){document.querySelector(\'.share-copy-btn\').textContent=\'Copy Link\'},2000)}.bind(this))" class="share-copy-btn" style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:#a32600;color:#fff;border:none;border-radius:5px;font-size:12px;font-weight:700;cursor:pointer;">Copy Link</button>';
           
           // Append share bar after article content renders
           setTimeout(function() {
@@ -129,7 +129,7 @@
           shareBar.innerHTML = '<span style="font-size:12px;font-weight:700;color:#546e7a;text-transform:uppercase;letter-spacing:.05em;">Share:</span>'
             + '<a href="https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(shareUrl)+'" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:#1877f2;color:#fff;border-radius:5px;font-size:12px;font-weight:700;text-decoration:none;">Facebook</a>'
             + '<a href="https://twitter.com/intent/tweet?url='+encodeURIComponent(shareUrl)+'&text='+encodeURIComponent(article.headline)+'" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:#000;color:#fff;border-radius:5px;font-size:12px;font-weight:700;text-decoration:none;">&#120143; / Twitter</a>'
-            + '<button onclick="navigator.clipboard.writeText(window.location.href).then(function(){this.textContent=\'✓ Copied!\';setTimeout(function(){document.querySelector(\'.share-copy-btn\').textContent=\'Copy Link\'},2000)}.bind(this))" class="share-copy-btn" style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:#ed1c24;color:#fff;border:none;border-radius:5px;font-size:12px;font-weight:700;cursor:pointer;">Copy Link</button>';
+            + '<button onclick="navigator.clipboard.writeText(window.location.href).then(function(){this.textContent=\'✓ Copied!\';setTimeout(function(){document.querySelector(\'.share-copy-btn\').textContent=\'Copy Link\'},2000)}.bind(this))" class="share-copy-btn" style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:#a32600;color:#fff;border:none;border-radius:5px;font-size:12px;font-weight:700;cursor:pointer;">Copy Link</button>';
           
           // Append share bar after article content renders
           setTimeout(function() {
@@ -186,7 +186,7 @@
           shareBar.innerHTML = '<span style="font-size:12px;font-weight:700;color:#546e7a;text-transform:uppercase;letter-spacing:.05em;">Share:</span>'
             + '<a href="https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(shareUrl)+'" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:#1877f2;color:#fff;border-radius:5px;font-size:12px;font-weight:700;text-decoration:none;">Facebook</a>'
             + '<a href="https://twitter.com/intent/tweet?url='+encodeURIComponent(shareUrl)+'&text='+encodeURIComponent(article.headline)+'" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:#000;color:#fff;border-radius:5px;font-size:12px;font-weight:700;text-decoration:none;">&#120143; / Twitter</a>'
-            + '<button onclick="navigator.clipboard.writeText(window.location.href).then(function(){this.textContent=\'✓ Copied!\';setTimeout(function(){document.querySelector(\'.share-copy-btn\').textContent=\'Copy Link\'},2000)}.bind(this))" class="share-copy-btn" style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:#ed1c24;color:#fff;border:none;border-radius:5px;font-size:12px;font-weight:700;cursor:pointer;">Copy Link</button>';
+            + '<button onclick="navigator.clipboard.writeText(window.location.href).then(function(){this.textContent=\'✓ Copied!\';setTimeout(function(){document.querySelector(\'.share-copy-btn\').textContent=\'Copy Link\'},2000)}.bind(this))" class="share-copy-btn" style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:#a32600;color:#fff;border:none;border-radius:5px;font-size:12px;font-weight:700;cursor:pointer;">Copy Link</button>';
           
           // Append share bar after article content renders
           setTimeout(function() {

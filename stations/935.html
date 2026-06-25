@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="../images/logo-935.png" />
+  <link rel="icon" type="image/png" href="../images/logo-935-cream.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Station — Prescott Broadcasting</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,12 +17,12 @@ nav.main-nav{background:#fbf3e7 !important;position:sticky !important;top:0 !imp
 .nav-links-wrap{display:flex;align-items:center;}
 .nav-links{display:flex;align-items:center;gap:0;list-style:none;}
 .nav-links li a{font-size:13px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1a2f4e;padding:6px 11px;border-bottom:3px solid transparent;display:block;text-decoration:none;transition:color .15s;}
-.nav-links li a:hover{color:#ed1c24;}
-.nav-links li a.active{color:#ed1c24 !important;border-bottom:3px solid #ed1c24 !important;font-weight:800 !important;}
+.nav-links li a:hover{color:#a32600;}
+.nav-links li a.active{color:#a32600 !important;border-bottom:3px solid #a32600 !important;font-weight:800 !important;}
 .nav-search{background:none;border:none;cursor:pointer;color:#1a2f4e;font-size:18px;padding:6px;display:flex;align-items:center;}
 .nav-social{display:flex;align-items:center;gap:10px;}
 .nav-social a{color:#1a2f4e;font-size:17px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:color .15s;}
-.nav-social a:hover{color:#ed1c24;}
+.nav-social a:hover{color:#a32600;}
 @media(max-width:900px){.main-nav-inner{padding:0 16px;}.nav-links li a{padding:6px 7px;font-size:11px;}}
 @media(max-width:640px){.nav-links-wrap{display:none !important;}}
 </style>
@@ -282,7 +282,7 @@ nav.main-nav{background:#fbf3e7 !important;position:sticky !important;top:0 !imp
         a.addEventListener('mouseover', function(){ this.style.background='rgba(255,255,255,.15)'; });
         a.addEventListener('mouseout',  function(){ this.style.background='rgba(255,255,255,.08)'; });
         a.addEventListener('click', function(){ document.getElementById('pbc-search-overlay').style.display='none'; });
-        a.innerHTML = '<div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#ed1c24;margin-bottom:4px;">'+h.type+'</div>'
+        a.innerHTML = '<div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#a32600;margin-bottom:4px;">'+h.type+'</div>'
           + '<div style="font-size:15px;font-weight:600;color:#fff;margin-bottom:3px;">'+h.label+'</div>'
           + (h.sub ? '<div style="font-size:12px;color:rgba(255,255,255,.55);">'+h.sub+'</div>' : '');
         results.appendChild(a);
