@@ -68,3 +68,64 @@ nav.main-nav  { position: relative !important; top: auto !important; }
 
 /* Body */
 body { background: #f5f5f5 !important; }
+
+/* ── News cards — 935 style ──────────────────────────────────────────────── */
+/* Override base serif font in news section */
+#news-section,
+#news-section * { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important; }
+
+/* Section title */
+#news-section .section-title { font-family: 'Inter', sans-serif !important; letter-spacing: .06em; }
+
+/* Card style — dark edge, bold headline, no white box (rock aesthetic) */
+.news-card {
+  background: #1a1a1a !important;
+  border-radius: 6px !important;
+  overflow: hidden;
+  border: none !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25) !important;
+  transition: transform .15s, box-shadow .15s;
+}
+.news-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4) !important;
+}
+.news-card img.news-card-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+  background: #111;
+}
+.news-card-body { padding: 14px 16px 16px !important; }
+.news-card-title,
+.news-headline,
+.news-card-cat,
+.news-cat,
+.news-card-date,
+.news-meta { font-family: 'Inter', sans-serif !important; }
+.news-card-title,
+.news-headline {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  line-height: 1.4 !important;
+  margin-bottom: 6px !important;
+}
+.news-card-cat,
+.news-cat {
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: .1em !important;
+  text-transform: uppercase !important;
+  color: #ed1c24 !important;
+  margin-bottom: 6px !important;
+}
+.news-card-date,
+.news-meta { color: rgba(255,255,255,0.4) !important; font-size: 11px !important; }
+
+/* Section header */
+#news-section .section-header {
+  border-bottom: 2px solid #ed1c24 !important;
+}
+#news-section .section-title { color: #111111 !important; }
