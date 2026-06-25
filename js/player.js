@@ -142,7 +142,7 @@
     #crr-player-body {
       position: relative;
       width: 100%;
-      background: #000;
+      background: #ffffff;
     }
     #crr-player-iframe {
       width: 100%;
