@@ -4,8 +4,8 @@ body { background: #f5f5f5 !important; }
 :root {
   --accent:    #ed1c24;
   --accent2:   #b5161c;
-  --black:     #111111;
-  --black2:    #1a1a1a;
+  --black:     #291000;
+  --black2:    #291000;
   --white-bg:  #f5f5f5;
   --max-width: 1600px;
 }
@@ -13,10 +13,10 @@ body { background: #f5f5f5 !important; }
 /* Nav — white background, black + red accents */
 nav.main-nav { background: #ffffff !important; border-bottom: 3px solid #ed1c24 !important; }
 .nav-logo img { height: 120px; }
-.nav-links li a { color: #111111 !important; }
+.nav-links li a { color: #291000 !important; }
 .nav-links li a:hover { color: #ed1c24 !important; }
 .nav-links li a.active { color: #ed1c24 !important; border-bottom-color: #ed1c24 !important; }
-.nav-social a { color: #111111 !important; }
+.nav-social a { color: #291000 !important; }
 .nav-social a:hover { color: #ed1c24 !important; }
 
 /* Listen Live button */
@@ -26,11 +26,11 @@ nav.main-nav { background: #ffffff !important; border-bottom: 3px solid #ed1c24 
 .hero-listen:hover { background: #b5161c !important; }
 
 /* On Air bar — BLACK */
-.on-air-bar { background: #111111 !important; }
+.on-air-bar { background: #291000 !important; }
 .on-air-badge { background: #ed1c24 !important; }
 
 /* Weather band — BLACK */
-#crr-weather-band, #crr-weather-report { background: #111111 !important; }
+#crr-weather-band, #crr-weather-report { background: #291000 !important; }
 
 /* Section accents */
 .section-link { color: #ed1c24 !important; }
@@ -40,18 +40,18 @@ nav.main-nav { background: #ffffff !important; border-bottom: 3px solid #ed1c24 
 .show-card-host { color: #ed1c24 !important; }
 
 /* Footer — BLACK */
-footer { background: #111111 !important; }
+footer { background: #291000 !important; }
 .footer-col-title { border-bottom-color: #ed1c24 !important; }
 .footer-contact a { color: #ff6b6e !important; }
 
 /* Sidebar — BLACK */
-#home-video-sidebar { background: #111111 !important; }
+#home-video-sidebar { background: #291000 !important; }
 
 /* Section headers */
-.section-title { color: #111111 !important; }
+.section-title { color: #291000 !important; }
 
 /* Page hero */
-.page-hero h1 { color: #111111; }
+.page-hero h1 { color: #291000; }
 
 /* Ad banner */
 #crr-ad-banner { background: #f5f5f5 !important; }
@@ -79,7 +79,7 @@ body { background: #f5f5f5 !important; }
 
 /* Card style — dark edge, bold headline, no white box (rock aesthetic) */
 .news-card {
-  background: #1a1a1a !important;
+  background: #291000 !important;
   border-radius: 6px !important;
   overflow: hidden;
   border: none !important;
@@ -128,4 +128,4 @@ body { background: #f5f5f5 !important; }
 #news-section .section-header {
   border-bottom: 2px solid #ed1c24 !important;
 }
-#news-section .section-title { color: #111111 !important; }
+#news-section .section-title { color: #291000 !important; }
