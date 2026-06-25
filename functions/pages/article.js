@@ -1,77 +1,79 @@
 /**
- * Cloudflare Pages Function — intercepts article page requests
- * Injects OG/Twitter meta tags server-side for social crawlers
- * Passes through normally for regular browsers
+ * Cloudflare Pages Function — injects OG meta tags server-side for social crawlers
+ * Avoids fetching origin (causes CF Error 1000 loopback)
  */
+
+const STATION_NAME = '93.5 Classic Rock';
+const STATION_ID = '935';
+const SITE_URL = 'https://935-site.pages.dev';
+const CMS = 'https://pbc-cms-production.up.railway.app';
+
 export async function onRequest(context) {
   const { request, env } = context;
   const url = new URL(request.url);
   const articleId = url.searchParams.get('id');
-  
-  // Only inject meta for social crawlers (or if article ID present)
-  const ua = request.headers.get('user-agent') || '';
-  const isCrawler = /facebookexternalhit|twitterbot|linkedinbot|slackbot|telegrambot|whatsapp|discord|googlebot/i.test(ua);
-  
-  // For non-crawlers without article ID, serve normally
+
+  // No article ID — serve the static file normally via next()
   if (!articleId) {
-    return fetch(request);
+    return context.next();
   }
-  
-  // Fetch the base HTML
-  const htmlResponse = await fetch(request);
-  const html = await htmlResponse.text();
-  
-  // Fetch article data from CMS
-  const API = 'https://pbc-cms-production.up.railway.app';
-  let title = 'Article — 93.5 Classic Rock';
-  let description = 'News from 93.5 Classic Rock — Prescott, Arizona';
+
+  // Fetch article from CMS
+  let title = `Article — ${STATION_NAME}`;
+  let description = `News from ${STATION_NAME} — Prescott, Arizona`;
   let image = '';
-  
+
   try {
-    const r = await fetch(`${API}/api/news/${articleId}`);
+    const r = await fetch(`${CMS}/api/news/${articleId}`);
     if (r.ok) {
       const article = await r.json();
       if (article.headline) {
-        title = article.headline + ' — 93.5 Classic Rock';
-        description = (article.body || '').replace(/<[^>]+>/g, '').substring(0, 200);
+        title = `${article.headline} — ${STATION_NAME}`;
+        description = (article.body || '').replace(/<[^>]+>/g, '').substring(0, 200).trim();
         if (article.image) {
-          image = article.image.startsWith('http') 
-            ? article.image 
-            : `${API}/${article.image.replace(/^\//, '')}`;
+          image = article.image.startsWith('http')
+            ? article.image
+            : `${CMS}/${article.image.replace(/^\//, '')}`;
         }
       }
     }
   } catch(e) {}
-  
-  // Inject OG tags into the <head>
-  const escapedTitle = title.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-  const escapedDesc = description.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-  const canonicalUrl = `https://935-site.pages.dev/pages/article.html?id=${articleId}`;
-  
+
+  const canonicalUrl = `${SITE_URL}/pages/article.html?id=${articleId}`;
+  const esc = s => s.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
   const ogTags = `
+  <title>${esc(title)}</title>
   <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="93.5 Classic Rock" />
-  <meta property="og:title" content="${escapedTitle}" />
-  <meta property="og:description" content="${escapedDesc}" />
+  <meta property="og:site_name" content="${STATION_NAME}" />
+  <meta property="og:title" content="${esc(title)}" />
+  <meta property="og:description" content="${esc(description)}" />
   <meta property="og:url" content="${canonicalUrl}" />
   ${image ? `<meta property="og:image" content="${image}" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />` : ''}
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="${escapedTitle}" />
-  <meta name="twitter:description" content="${escapedDesc}" />
-  ${image ? `<meta name="twitter:image" content="${image}" />` : ''}
-  <title>${escapedTitle}</title>`;
-  
-  // Replace the generic title and inject OG tags
+  <meta name="twitter:title" content="${esc(title)}" />
+  <meta name="twitter:description" content="${esc(description)}" />
+  ${image ? `<meta name="twitter:image" content="${image}" />` : ''}`;
+
+  // Serve the static article.html with injected meta — use context.next() to get the file
+  const response = await context.next();
+  const html = await response.text();
+
   const injected = html
     .replace(/<title>Article[^<]*<\/title>/, '')
+    .replace(/<meta property="og:[^>]+>/g, '')
+    .replace(/<meta name="twitter:[^>]+>/g, '')
+    .replace(/<meta id="og-[^>]+>/g, '')
+    .replace(/<meta id="tw-[^>]+>/g, '')
     .replace('<meta charset="UTF-8" />', `<meta charset="UTF-8" />${ogTags}`);
-  
+
   return new Response(injected, {
-    headers: { 
+    status: response.status,
+    headers: {
       'content-type': 'text/html;charset=UTF-8',
-      'cache-control': 'public, max-age=60'
+      'cache-control': 'public, max-age=60',
     }
   });
 }
