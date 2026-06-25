@@ -219,7 +219,7 @@
         if (!current) {
           if (bar) bar.style.display = 'none';
           if (watchBtn) { watchBtn.style.display = 'none'; watchBtn.removeAttribute('data-video-url'); }
-          window.93.5 Classic Rock_CURRENT_VIDEO_URL = null;
+          window.CRR_CURRENT_VIDEO_URL = null;
           if (typeof setStickyOffsets === 'function') setTimeout(setStickyOffsets, 50);
           return;
         }
@@ -232,18 +232,18 @@
           if (current.video_url) {
             watchBtn.style.display = 'inline-flex';
             watchBtn.setAttribute('data-video-url', current.video_url);
-            window.93.5 Classic Rock_CURRENT_VIDEO_URL = current.video_url;
+            window.CRR_CURRENT_VIDEO_URL = current.video_url;
           } else {
             watchBtn.style.display = 'none';
             watchBtn.removeAttribute('data-video-url');
-            window.93.5 Classic Rock_CURRENT_VIDEO_URL = null;
+            window.CRR_CURRENT_VIDEO_URL = null;
           }
         }
         if (typeof setStickyOffsets === 'function') setTimeout(setStickyOffsets, 50);
       }).catch(function(){});
     }
     updateHomeOnAirBar();
-    if (!window.93.5 Classic Rock_HOME_ON_AIR_TIMER) window.93.5 Classic Rock_HOME_ON_AIR_TIMER = setInterval(updateHomeOnAirBar, 60000);
+    if (!window.CRR_HOME_ON_AIR_TIMER) window.CRR_HOME_ON_AIR_TIMER = setInterval(updateHomeOnAirBar, 60000);
     window.addEventListener('focus', updateHomeOnAirBar);
     document.addEventListener('visibilitychange', function(){ if (!document.hidden) updateHomeOnAirBar(); });
 

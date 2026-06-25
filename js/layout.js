@@ -97,7 +97,7 @@
     return mtrSection + '<footer>'
       + '<div class="footer-grid">'
       +   '<div class="footer-logo-col">'
-      +     '<div class="footer-logo"><img src="'+root+'images/logo-kahm.png" alt="'+cfg.site.name+'" onerror="this.src=\''+root+cfg.site.logo+'\'" /></div>'
+      +     '<div class="footer-logo"><img src="'+root+cfg.site.logo+'" alt="'+cfg.site.name+'" /></div>'
       +     '<div class="footer-tagline">'+st.frequency+'<br>'+st.tagline+'</div>'
       +   '</div>'
       +   '<div class="footer-right-group">'
