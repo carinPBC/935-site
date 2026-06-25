@@ -135,3 +135,78 @@ nav.main-nav  { position: relative !important; top: auto !important; }
 
 /* News section background matches nav */
 #news-section { background: #ffffff !important; }
+
+/* ── GLOBAL PAGE BACKGROUND — all overrides resolved here ──────────────── */
+/* Single source of truth: --page-bg CSS variable (set by JS from station globals) */
+body,
+.page-hero,
+.content-wrap,
+.editorial-section,
+.inquiry-section,
+.psa-section,
+.event-submit-section,
+.cards-section,
+.schedule-wrap,
+.advertise-hero,
+.hero,
+section,
+main {
+  background-color: var(--page-bg, #e9ba8f) !important;
+}
+
+/* Exceptions — keep dark surfaces dark */
+.on-air-bar,
+#crr-weather-band,
+#home-video-sidebar,
+footer,
+nav.main-nav,
+.news-card,
+.modal-backdrop,
+#pbc-search-overlay,
+#crr-player-widget,
+#crr-player-header,
+#crr-audio-controls { background-color: revert !important; }
+
+nav.main-nav { background-color: #ffffff !important; }
+footer { background-color: #291000 !important; }
+.on-air-bar { background-color: #291000 !important; }
+#crr-weather-band { background-color: #291000 !important; }
+#home-video-sidebar { background-color: #291000 !important; }
+.news-card { background-color: #291000 !important; }
+
+/* Form fields and cards should also inherit */
+.card, .card-body, .info-table tr:hover td,
+input, textarea, select { background-color: transparent; }
+
+/* ── Podcast cards — dark treatment matching news cards ─────────────────── */
+.podcast-card,
+.show-card,
+.show-card-body,
+.podcast-wrap .show-card {
+  background: #291000 !important;
+  color: #fff !important;
+  border-radius: 8px;
+}
+.show-card-name,
+.show-card-host,
+.show-card-times { color: #fff !important; }
+.show-card-host { color: rgba(255,255,255,0.65) !important; }
+.show-card-link, .show-card-times { color: #a32600 !important; }
+
+/* ── News page cards — match homepage dark treatment ──────────────────── */
+.news-card {
+  background: #291000 !important;
+  border-radius: 6px !important;
+}
+.news-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4) !important;
+}
+.news-card-title,
+.news-headline { color: #fff !important; font-family: 'Inter', sans-serif !important; }
+.news-card-cat,
+.news-cat { color: #a32600 !important; }
+.news-card-date,
+.news-meta { color: rgba(255,255,255,0.4) !important; }
+.news-card-body,
+.news-card-img + div { background: #291000 !important; padding: 12px 14px !important; }
