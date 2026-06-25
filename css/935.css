@@ -210,3 +210,60 @@ input, textarea, select { background-color: transparent; }
 .news-meta { color: rgba(255,255,255,0.4) !important; }
 .news-card-body,
 .news-card-img + div { background: #291000 !important; padding: 12px 14px !important; }
+
+/* ── Homepage news section bg ───────────────────────────────────────────── */
+#news-section,
+#news-section * { background-color: transparent !important; }
+/* Override the section bg but keep cards dark */
+#news-section .news-card { background-color: #291000 !important; }
+
+/* ── Homepage news padding ──────────────────────────────────────────────── */
+#news-section { padding: 48px 96px !important; }
+.news-grid { gap: 24px !important; }
+
+/* ── On-air bar — inner pages match homepage ─────────────────────────────── */
+/* layout.js injects on-air bar on inner pages — force same styling */
+.on-air-bar {
+  background: #291000 !important;
+  padding: 10px 24px !important;
+  min-height: 44px !important;
+  border-top: 3px solid #a32600 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+.on-air-badge {
+  background: #a32600 !important;
+}
+/* The inner-page on-air bar Listen Live button */
+.on-air-bar a[data-listen] {
+  background: #a32600 !important;
+}
+
+/* ── Form fields — dark on cream bg ─────────────────────────────────────── */
+input:not([type=color]):not([type=range]):not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]),
+textarea,
+select {
+  background: rgba(0,0,0,0.08) !important;
+  border: 1.5px solid rgba(0,0,0,0.15) !important;
+  color: #1a0a00 !important;
+  border-radius: 6px !important;
+}
+input::placeholder, textarea::placeholder { color: rgba(26,10,0,0.45) !important; }
+
+/* ── Employment page — white job cards → cream ───────────────────────────── */
+.job-card,
+.job-listing,
+[class*="job"],
+.content-wrap .card,
+.jobs-list > div {
+  background: rgba(255,255,255,0.4) !important;
+  border: 1px solid rgba(0,0,0,0.1) !important;
+}
+
+/* ── FCC page gap below content ─────────────────────────────────────────── */
+.content-wrap { min-height: 0 !important; }
+
+/* ── News page padding ───────────────────────────────────────────────────── */
+.news-wrap, 
+#news-grid-container,
+.news-content { padding: 32px 96px !important; }

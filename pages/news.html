@@ -5,8 +5,8 @@
   <link rel="icon" type="image/png" href="../images/logo-935-cream.svg" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>News — 93.5 Classic Rock</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/935-base.css?v=8" />
-  <link rel="stylesheet" href="../css/935.css?v=8" />
+  <link rel="stylesheet" href="../css/935-base.css?v=9" />
+  <link rel="stylesheet" href="../css/935.css?v=9" />
   <style id="nav-critical">
     nav.main-nav{background:#ffffff !important;position:sticky !important;top:0 !important;z-index:9999 !important;}
     .main-nav-inner{width:100%;padding:0 48px;display:flex;align-items:center;justify-content:space-between;min-height:100px;}
@@ -19,20 +19,20 @@
   <style>
     .news-controls { display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:24px; }
     .date-nav { display:flex;align-items:center;gap:8px; }
-    .date-btn { padding:8px 14px;background:#fff;border:1.5px solid #e8ecf0;border-radius:8px;font-size:18px;cursor:pointer;transition:background .15s; }
+    .date-btn { padding:8px 14px;background:rgba(0,0,0,0.1);border:1.5px solid #e8ecf0;border-radius:8px;font-size:18px;cursor:pointer;transition:background .15s; }
     .date-btn:hover { background:#f4f6f8; }
     .date-btn:disabled { opacity:.4;cursor:default; }
     .date-label { font-size:14px;font-weight:700;color:#111111;min-width:200px;text-align:center; }
-    .search-box { flex:1;min-width:200px;padding:10px 14px;border:1.5px solid #e8ecf0;border-radius:8px;font-size:14px;font-family:inherit;outline:none; }
+    .search-box { flex:1;min-width:200px;padding:10px 14px;border:1.5px solid rgba(0,0,0,0.15);border-radius:8px;font-size:14px;font-family:inherit;outline:none; }
     .search-box:focus { border-color:#111111; }
     .news-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px; }
     .news-card { background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.07);overflow:hidden;transition:transform .15s,box-shadow .15s;cursor:pointer; }
     .news-card:hover { transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,.12); }
     .news-card-img { width:100%;height:160px;object-fit:contain;background:#f4f6f8;display:block; }
-    .news-card-body { padding:16px; }
+    .news-card-body { padding:16px; background:#291000; }
     .news-cat { font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#a32600;margin-bottom:6px; }
     .news-headline { font-size:15px;font-weight:700;color:#111111;line-height:1.4;margin-bottom:8px; }
-    .news-meta { font-size:11px;color:#90a4ae;display:flex;gap:8px;align-items:center; }
+    .news-meta { font-size:11px;color:rgba(255,255,255,0.45);display:flex;gap:8px;align-items:center; }
     .news-station { background:#e3f2fd;color:#1565c0;padding:2px 8px;border-radius:100px;font-size:10px;font-weight:700;text-transform:uppercase; }
     .no-results { color:#546e7a;font-size:14px;padding:40px 0;text-align:center; }
     @media(max-width:640px){ .news-grid{grid-template-columns:1fr;} .date-label{min-width:140px;font-size:12px;} }
@@ -47,12 +47,12 @@
     <div style="flex:1;overflow:hidden;height:95px;position:relative;margin-top:4px;">
       <a class="weatherwidget-io" href="https://forecast7.com/en/34d54n112d47/prescott/?unit=us" data-label_1="PRESCOTT" data-label_2="WEATHER" data-theme="original" data-basecolor="#111111" data-days="7">PRESCOTT WEATHER</a>
     </div>
-    <div id="kahm-weather-report" style="flex-shrink:0;display:none;align-items:center;gap:8px;padding:0 20px;border-left:1px solid rgba(255,255,255,0.1);min-width:520px;background:#111111;">
+    <div id="crr-weather-report" style="flex-shrink:0;display:none;align-items:center;gap:8px;padding:0 20px;border-left:1px solid rgba(255,255,255,0.1);min-width:520px;background:#111111;">
       <span style="font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,0.5);">&#127925; Today&#39;s Report</span>
       <div id="kahm-weather-player"></div>
     </div>
   </div>
-  <div id="kahm-ad-banner" style="display:none;text-align:center;padding:12px 0;background:#f8f9fa;border-bottom:1px solid #e8ecf0;"></div>
+  <div id="crr-ad-banner" style="display:none;text-align:center;padding:12px 0;background:transparent;border-bottom:1px solid rgba(0,0,0,0.1);"></div>
   </div>
   <div class="page-hero">
     <h1>News</h1>
@@ -60,7 +60,7 @@
   </div>
 
 
-  <div class="content-wrap">
+  <div class="content-wrap" style="padding: 32px 96px;">
     <div class="news-controls">
       <div class="date-nav">
         <button class="date-btn" id="prev-date">&#8249;</button>
