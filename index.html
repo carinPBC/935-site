@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="images/logo-935.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/935-base.css?v=3" />
-  <link rel="stylesheet" href="css/935.css?v=3" />
+  <link rel="stylesheet" href="css/935.css?v=4" />
   <style id="nav-critical">
     nav.main-nav{background:#ffffff !important;position:relative !important;top:auto !important;z-index:auto !important;border-bottom:3px solid #ed1c24 !important;}
     .main-nav-inner{width:100%;padding:0 48px;display:flex;align-items:center;justify-content:space-between;min-height:150px;}
@@ -30,7 +30,7 @@
   <!-- ON AIR BAR -->
   <div class="on-air-bar" id="on-air-bar" style="display:none;padding-bottom:12px;">
     <span class="on-air-badge">On Air Now</span>
-    <span class="on-air-show" id="on-air-show" style="margin-left:8px;"></span>
+    <span class="on-air-show" id="on-air-show" style="display:none;"></span>
     <span id="on-air-track" style="font-size:13px;color:rgba(255,255,255,0.7);margin-left:12px;font-style:italic;"></span>
     <span class="on-air-time" id="on-air-time" style="margin-left:12px;"></span>
     <div style="display:flex;gap:10px;margin-left:auto;flex-shrink:0;align-items:center;">
@@ -454,11 +454,14 @@
       });
   }
 
-  document.addEventListener('DOMContentLoaded', function() {
-    // Only run if the widget is on the page
-    if (!document.getElementById('crr-recently-played')) return;
-    loadTracks();
-    rpTimer = setInterval(loadTracks, POLL_MS);
+  // Use window.onload + small delay to ensure DOM is fully settled
+  // (layout.js runs async, weatherwidget injects scripts after DOMContentLoaded)
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      if (!document.getElementById('crr-rp-list')) return;
+      loadTracks();
+      rpTimer = setInterval(loadTracks, POLL_MS);
+    }, 500);
   });
 })();
 </script>
