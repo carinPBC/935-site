@@ -368,7 +368,10 @@
 
     var html = '';
     tracks.forEach(function(t, i) {
-      var p      = parseMeta(t.meta);
+      // CRN tracks have artist/title directly; others use meta string
+      var p = (t.artist || t.title)
+        ? { artist: t.artist || '', title: t.title || '' }
+        : parseMeta(t.meta);
       var isNow  = (i === 0 || t.is_current === true);
       var time   = t.localtime || fmtTime(t.created_at);
 
