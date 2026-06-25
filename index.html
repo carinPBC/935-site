@@ -22,30 +22,9 @@
 <body class="crr-home">
   <div id="site-header"></div>
   
-  <!-- HERO CAROUSEL -->
-  <section id="hero-section" style="width:100%;background:#111111;padding:40px 0;border-bottom:3px solid rgba(255,255,255,0.12);">
-    <div id="crr-carousel-wrap" style="width:75%;margin:0 auto;position:relative;border-radius:10px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.35);background:#0a0a0a;min-height:200px;">
-
-      <!-- Slides container -->
-      <div id="crr-carousel-slides" style="display:flex;transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);will-change:transform;"></div>
-
-      <!-- Caption overlay -->
-      <div id="crr-carousel-caption" style="display:none;position:absolute;bottom:0;left:0;right:0;padding:20px 24px 16px;background:linear-gradient(transparent,rgba(0,0,0,0.72));pointer-events:none;">
-        <p id="crr-carousel-caption-text" style="margin:0;font-size:15px;font-weight:600;color:#fff;line-height:1.4;text-shadow:0 1px 4px rgba(0,0,0,0.5);"></p>
-      </div>
-
-      <!-- Arrows -->
-      <button id="crr-carousel-prev" onclick="crrCarouselMove(-1)" style="display:none;position:absolute;left:12px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.45);border:none;color:#fff;font-size:20px;width:40px;height:40px;border-radius:50%;cursor:pointer;z-index:10;transition:background .15s;line-height:1;" onmouseover="this.style.background='rgba(0,0,0,0.75)'" onmouseout="this.style.background='rgba(0,0,0,0.45)'">&#8249;</button>
-      <button id="crr-carousel-next" onclick="crrCarouselMove(1)" style="display:none;position:absolute;right:12px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.45);border:none;color:#fff;font-size:20px;width:40px;height:40px;border-radius:50%;cursor:pointer;z-index:10;transition:background .15s;line-height:1;" onmouseover="this.style.background='rgba(0,0,0,0.75)'" onmouseout="this.style.background='rgba(0,0,0,0.45)'">&#8250;</button>
-
-      <!-- Dots -->
-      <div id="crr-carousel-dots" style="display:none;position:absolute;bottom:10px;right:14px;display:flex;gap:6px;z-index:10;"></div>
-
-      <!-- Placeholder while loading -->
-      <div id="crr-carousel-placeholder" style="width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;background:#0a0a0a;">
-        <span style="color:rgba(255,255,255,0.25);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;">Loading&hellip;</span>
-      </div>
-    </div>
+  <!-- HERO -->
+  <section id="hero-section" data-hero-bg="" style="width:100%;position:relative;background:#111111;">
+    <img id="hero-img" src="" alt="93.5 Classic Rock" style="width:100%;display:block;height:auto;" onerror="this.style.display='none'"/>
   </section>
 
   <!-- ON AIR BAR -->
@@ -250,14 +229,9 @@
     // ── HERO IMAGE ───────────────────────────────────────────────
     // p.hero_image from CMS — prefix with API base URL
     if (p.hero_image) {
-      var heroSection = document.getElementById('hero-section');
       var heroSrc = p.hero_image.startsWith('http') ? p.hero_image : p.hero_image.startsWith('/') ? 'https://pbc-cms-production.up.railway.app' + p.hero_image : 'https://pbc-cms-production.up.railway.app/' + p.hero_image;
-      if (heroSection) {
-        heroSection.style.minHeight = '';
-        heroSection.style.display = 'block';
-        heroSection.style.background = '#111111';
-        heroSection.innerHTML = '<img src="' + heroSrc + '" alt="93.5 Classic Rock" style="width:100%;display:block;height:auto;" onerror="this.style.display=\'none\'" />';
-      }
+      var heroImg = document.getElementById('hero-img');
+      if (heroImg) { heroImg.src = heroSrc; heroImg.style.display = 'block'; }
     }
 
     
@@ -473,139 +447,6 @@
 })();
 </script>
 
-<script>
-// ── 93.5 Classic Rock Hero Carousel ────────────────────────────────────────────────────────
-(function() {
-  var CMS = 'https://pbc-cms-production.up.railway.app';
-  var slides = [];
-  var current = 0;
-  var timer = null;
-  var INTERVAL = 5000; // default; overridden by globals below
 
-  function renderCarousel(data) {
-    var wrap      = document.getElementById('crr-carousel-wrap');
-    var container = document.getElementById('crr-carousel-slides');
-    var caption   = document.getElementById('crr-carousel-caption');
-    var captText  = document.getElementById('crr-carousel-caption-text');
-    var prev      = document.getElementById('crr-carousel-prev');
-    var next      = document.getElementById('crr-carousel-next');
-    var dotsEl    = document.getElementById('crr-carousel-dots');
-    var placeholder = document.getElementById('crr-carousel-placeholder');
-
-    if (!data || !data.length) {
-      if (placeholder) placeholder.innerHTML = '<span style="color:rgba(255,255,255,0.2);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;">No slides yet</span>';
-      return;
-    }
-
-    slides = data;
-    if (placeholder) placeholder.style.display = 'none';
-
-    // Build slides
-    container.innerHTML = data.map(function(s) {
-      var src = s.image_url.startsWith('http') ? s.image_url : CMS + '/' + s.image_url;
-      return '<div style="min-width:100%;width:100%;flex-shrink:0;">'
-        + '<img src="' + src + '" alt="' + (s.caption || '') + '" '
-        + 'style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;" '
-        + 'loading="lazy" />'
-        + '</div>';
-    }).join('');
-
-    // Dots
-    dotsEl.style.display = 'flex';
-    dotsEl.innerHTML = data.map(function(_, i) {
-      return '<button onclick="crrCarouselGoTo(' + i + ')" '
-        + 'id="crr-dot-' + i + '" '
-        + 'style="width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;padding:0;transition:background .2s,transform .2s;background:' + (i===0?'#fff':'rgba(255,255,255,0.4)') + ';transform:' + (i===0?'scale(1.3)':'scale(1)') + ';">'
-        + '</button>';
-    }).join('');
-
-    // Arrows (only if multiple slides)
-    if (data.length > 1) {
-      prev.style.display = 'flex';
-      next.style.display = 'flex';
-    }
-
-    // Caption
-    if (data[0].caption) {
-      caption.style.display = 'block';
-      captText.textContent = data[0].caption;
-    }
-
-    // Start autoplay
-    startTimer();
-
-    // Pause on hover
-    wrap.addEventListener('mouseenter', function() { clearInterval(timer); });
-    wrap.addEventListener('mouseleave', startTimer);
-  }
-
-  function goTo(idx) {
-    if (!slides.length) return;
-    var container = document.getElementById('crr-carousel-slides');
-    var caption   = document.getElementById('crr-carousel-caption');
-    var captText  = document.getElementById('crr-carousel-caption-text');
-
-    var next = ((idx % slides.length) + slides.length) % slides.length;
-    // If wrapping (e.g. last→first or first→last), disable transition briefly
-    if (Math.abs(next - current) > 1) {
-      container.style.transition = 'none';
-      setTimeout(function() {
-        container.style.transition = 'transform 0.5s cubic-bezier(0.4,0,0.2,1)';
-      }, 20);
-    }
-    current = next;
-    container.style.transform = 'translateX(-' + (current * 100) + '%)';
-
-    // Update dots
-    slides.forEach(function(_, i) {
-      var dot = document.getElementById('crr-dot-' + i);
-      if (dot) {
-        dot.style.background = i === current ? '#fff' : 'rgba(255,255,255,0.4)';
-        dot.style.transform  = i === current ? 'scale(1.3)' : 'scale(1)';
-      }
-    });
-
-    // Update caption
-    var cap = slides[current].caption;
-    if (cap) {
-      caption.style.display = 'block';
-      captText.textContent = cap;
-    } else {
-      caption.style.display = 'none';
-    }
-  }
-
-  function startTimer() {
-    clearInterval(timer);
-    if (slides.length > 1) {
-      timer = setInterval(function() { goTo(current + 1); }, INTERVAL);
-    }
-  }
-
-  // Public functions for onclick handlers
-  window.crrCarouselMove = function(dir) { clearInterval(timer); goTo(current + dir); startTimer(); };
-  window.crrCarouselGoTo = function(idx) { clearInterval(timer); goTo(idx); startTimer(); };
-
-  // Load slides
-  document.addEventListener('DOMContentLoaded', function() {
-    // Read carousel delay from station globals
-    fetch(CMS + '/api/station-globals/935')
-      .then(function(r) { return r.json(); })
-      .then(function(g) {
-        var delay = parseInt(g.carousel_delay_seconds || 0, 10);
-        if (delay >= 2 && delay <= 30) INTERVAL = delay * 1000;
-      })
-      .catch(function() {});
-
-    fetch(CMS + '/api/hero-slides/935')
-      .then(function(r) { return r.json(); })
-      .then(renderCarousel)
-      .catch(function() {
-        var ph = document.getElementById('crr-carousel-placeholder');
-        if (ph) ph.innerHTML = '<span style="color:rgba(255,255,255,0.2);font-size:12px;letter-spacing:.08em;text-transform:uppercase;">No slides configured</span>';
-      });
-  });
-})();
-</script>
 </body>
 </html>
