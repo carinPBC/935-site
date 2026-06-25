@@ -15,9 +15,9 @@
   style.textContent = `
     #crr-player-widget {
       position: fixed;
-      bottom: -420px;
+      bottom: -520px;
       right: 24px;
-      width: 320px;
+      width: 360px;
       background: #111111;
       border-radius: 12px 12px 0 0;
       box-shadow: 0 -4px 32px rgba(0,0,0,0.45);
@@ -146,7 +146,7 @@
     }
     #crr-player-iframe {
       width: 100%;
-      height: 220px;
+      height: 380px;
       border: none;
       display: block;
     }
@@ -378,7 +378,7 @@
       // Load StreamGuys player as the visible audio player
       if (!skipAudio) {
         sgIframe.src = STREAMGUYS_URL;
-        sgIframe.style.height = '220px';
+        sgIframe.style.height = '380px';
         // Hide custom audio controls — StreamGuys handles playback
         var audioMode = document.getElementById('crr-audio-mode');
         if (audioMode) audioMode.style.display = 'none';
@@ -434,7 +434,7 @@
     currentVideoUrl = null;
     // Restore StreamGuys player
     if (isOpen) {
-      sgIframe.style.height = '220px';
+      sgIframe.style.height = '380px';
       var audioMode = document.getElementById('crr-audio-mode');
       if (audioMode) audioMode.style.display = 'none';
     }

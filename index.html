@@ -114,7 +114,7 @@
         </div>
         <a href="https://player.cloudradionetwork.com/classicrock935/" target="_blank" rel="noopener"
           id="crr-rp-footer"
-          style="display:none;align-items:center;justify-content:space-between;margin-top:12px;padding:8px 12px;background:rgba(255,255,255,0.06);border-radius:6px;text-decoration:none;transition:background .15s;border:1px solid rgba(255,255,255,0.08);"
+          style="display:none !important;align-items:center;justify-content:space-between;margin-top:12px;padding:8px 12px;background:rgba(255,255,255,0.06);border-radius:6px;text-decoration:none;transition:background .15s;border:1px solid rgba(255,255,255,0.08);"
           onmouseover="this.style.background='rgba(255,255,255,0.12)'"
           onmouseout="this.style.background='rgba(255,255,255,0.06)'">
           <span style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.75);">&#9654;&nbsp; Listen on ClassicRock935.com</span>
@@ -363,7 +363,8 @@
       html += '</div>';
     });
     list.innerHTML = html;
-    if (footer) footer.style.display = 'flex';
+    // footer button removed — listen live is in on-air bar
+    // if (footer) footer.style.display = 'flex';
   }
 
   function loadTracks935() {
