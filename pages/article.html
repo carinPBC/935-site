@@ -87,8 +87,13 @@
           
           // Append share bar after article content renders
           setTimeout(function() {
-            var wrap = document.querySelector('.article-wrap');
-            if (wrap) wrap.appendChild(shareBar);
+            var scWrap = document.querySelector('.content-wrap');
+            if (scWrap) {
+              scWrap.parentNode.insertBefore(shareBar, scWrap.nextSibling);
+            } else {
+              var wrap = document.querySelector('.article-wrap');
+              if (wrap) wrap.appendChild(shareBar);
+            }
           }, 100);
           
           document.getElementById('article-content').innerHTML = '<div class="article-loading">Article not found.</div>';
@@ -127,8 +132,13 @@
           
           // Append share bar after article content renders
           setTimeout(function() {
-            var wrap = document.querySelector('.article-wrap');
-            if (wrap) wrap.appendChild(shareBar);
+            var scWrap = document.querySelector('.content-wrap');
+            if (scWrap) {
+              scWrap.parentNode.insertBefore(shareBar, scWrap.nextSibling);
+            } else {
+              var wrap = document.querySelector('.article-wrap');
+              if (wrap) wrap.appendChild(shareBar);
+            }
           }, 100);
           
           document.getElementById('article-content').innerHTML =
@@ -179,8 +189,13 @@
           
           // Append share bar after article content renders
           setTimeout(function() {
-            var wrap = document.querySelector('.article-wrap');
-            if (wrap) wrap.appendChild(shareBar);
+            var scWrap = document.querySelector('.content-wrap');
+            if (scWrap) {
+              scWrap.parentNode.insertBefore(shareBar, scWrap.nextSibling);
+            } else {
+              var wrap = document.querySelector('.article-wrap');
+              if (wrap) wrap.appendChild(shareBar);
+            }
           }, 100);
           
           document.getElementById('article-content').innerHTML = '<div class="article-loading">Could not load article.</div>';
