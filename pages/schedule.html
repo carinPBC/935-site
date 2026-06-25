@@ -235,5 +235,20 @@
 </script>
 <script src="../js/player.js?v=14"></script>
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');</script>
+
+  // Apply station background color
+  (function() {
+    var API_935 = 'https://pbc-cms-production.up.railway.app';
+    fetch(API_935 + '/api/station-globals/935')
+      .then(function(r) { return r.json(); })
+      .then(function(g) {
+        var bg = g.page_bg || '#e9ba8f';
+        document.documentElement.style.setProperty('--page-bg', bg);
+        document.body.style.background = bg;
+        var s = document.getElementById('pbc-page-bg');
+        if (!s) { s = document.createElement('style'); s.id = 'pbc-page-bg'; document.head.appendChild(s); }
+        s.textContent = 'body, section, .content-wrap { background: ' + bg + ' !important; }';
+      }).catch(function(){});
+  })();
 </body>
 </html>
