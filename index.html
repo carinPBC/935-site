@@ -326,144 +326,60 @@
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');</script>
 
 <script>
-// Recently Played
-  var CMS_API    = 'https://pbc-cms-production.up.railway.app';
-  var POLL_MS    = 30000;
-  var rpTimer    = null;
+  var CMS_API_935 = 'https://pbc-cms-production.up.railway.app';
 
-  function toTitleCase(str) {
-    var smalls = {'a':1,'an':1,'the':1,'and':1,'but':1,'or':1,'for':1,'in':1,'on':1,'at':1,'to':1,'of':1};
-    return str.toLowerCase().replace(/\w\S*/g, function(word, idx) {
-      if (idx > 0 && smalls[word]) return word;
-      return word.charAt(0).toUpperCase() + word.slice(1);
-    });
-  }
-
-  function parseMeta(meta) {
-    if (!meta) return { artist: '', title: 'Unknown' };
-    var dash = meta.indexOf(' - ');
-    if (dash !== -1) {
-      return {
-        artist: toTitleCase(meta.substring(0, dash).trim()),
-        title:  toTitleCase(meta.substring(dash + 3).trim())
-      };
-    }
-    return { artist: '', title: toTitleCase(meta.trim()) };
-  }
-
-  function fmtTime(dateStr) {
-    if (!dateStr) return '';
-    try {
-      var d = new Date(dateStr.replace(' ', 'T') + 'Z');
-      if (isNaN(d.getTime())) return '';
-      // Arizona is UTC-7 year-round (no DST)
-      var az = new Date(d.getTime() - 7 * 60 * 60 * 1000);
-      var h = az.getUTCHours(), m = az.getUTCMinutes();
-      var ampm = h >= 12 ? 'PM' : 'AM';
-      h = h % 12 || 12;
-      return h + ':' + (m < 10 ? '0' : '') + m + ' ' + ampm;
-    } catch(e) { return ''; }
-  }
-
-  function renderTracks(tracks) {
-    var list   = document.getElementById('crr-rp-list');
+  function renderTracks935(tracks) {
+    var list = document.getElementById('crr-rp-list');
     var footer = document.getElementById('crr-rp-footer');
     if (!list) return;
-
     if (!tracks || !tracks.length) {
       list.innerHTML = '<div style="font-size:12px;color:rgba(255,255,255,0.3);padding:8px 0;">No track data</div>';
       return;
     }
-
     var html = '';
     tracks.forEach(function(t, i) {
-      // CRN tracks have artist/title directly; others use meta string
-      var p = (t.artist || t.title)
-        ? { artist: t.artist || '', title: t.title || '' }
-        : parseMeta(t.meta);
-      var isNow  = (i === 0 || t.is_current === true);
-      var time   = t.localtime || fmtTime(t.created_at);
-
+      var artist = t.artist || '';
+      var title = t.title || '';
+      var isNow = (i === 0);
+      var time = t.localtime || '';
       html += '<div style="display:flex;align-items:center;gap:10px;padding:8px 0;' +
         (i > 0 ? 'border-top:1px solid rgba(255,255,255,0.06);' : '') +
-        (isNow ? 'background:rgba(72,126,166,0.1);margin:0 -20px;padding:8px 20px;border-radius:0;' : '') +
-        '">';
-
-      // Index / now-playing dot
-      html += '<span style="font-size:9px;font-weight:800;color:' +
-        (isNow ? '#a32600' : 'rgba(255,255,255,0.2)') +
-        ';width:14px;flex-shrink:0;text-align:center;">' +
-        (isNow ? '&#9679;' : i) +
-        '</span>';
-
-      // Music note
+        (isNow ? 'background:rgba(163,38,0,0.12);margin:0 -20px;padding:8px 20px;' : '') + '">';
+      html += '<span style="font-size:9px;font-weight:800;color:' + (isNow ? '#a32600' : 'rgba(255,255,255,0.2)') + ';width:14px;flex-shrink:0;text-align:center;">' + (isNow ? '&#9679;' : i) + '</span>';
       if (t.image_url) {
-                html += '<img src="' + t.image_url + '" style="width:32px;height:32px;border-radius:3px;object-fit:cover;flex-shrink:0;" onerror="this.style.display=&quot;none&quot;" />';
+        html += '<img src="' + t.image_url + '" width="32" height="32" style="border-radius:3px;object-fit:cover;flex-shrink:0;" />';
       } else {
-        html += '<span style="font-size:12px;color:' +
-          (isNow ? '#a32600' : 'rgba(255,255,255,0.2)') +
-          ';flex-shrink:0;">&#9835;</span>';
+        html += '<span style="font-size:12px;color:' + (isNow ? '#a32600' : 'rgba(255,255,255,0.2)') + ';flex-shrink:0;">&#9835;</span>';
       }
-
-      // Track info
       html += '<div style="flex:1;min-width:0;">';
-      if (p.artist) {
-        html += '<div style="font-size:11px;font-weight:' + (isNow ? '800' : '600') +
-          ';color:' + (isNow ? '#fff' : 'rgba(255,255,255,0.75)') +
-          ';white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + p.artist + '</div>';
-        html += '<div style="font-size:10px;color:rgba(255,255,255,0.42);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px;">' + p.title + '</div>';
-      } else {
-        html += '<div style="font-size:11px;font-weight:' + (isNow ? '800' : '600') +
-          ';color:' + (isNow ? '#fff' : 'rgba(255,255,255,0.75)') +
-          ';white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + p.title + '</div>';
-      }
+      if (artist) html += '<div style="font-size:11px;font-weight:' + (isNow ? '800' : '600') + ';color:' + (isNow ? '#fff' : 'rgba(255,255,255,0.75)') + ';white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + artist + '</div>';
+      html += '<div style="font-size:10px;color:rgba(255,255,255,0.42);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + title + '</div>';
       html += '</div>';
-
-      // Time
-      if (time) {
-        html += '<span style="font-size:9px;color:rgba(255,255,255,0.2);flex-shrink:0;white-space:nowrap;">' + time + '</span>';
-      }
-
+      if (time) html += '<span style="font-size:9px;color:rgba(255,255,255,0.2);flex-shrink:0;">' + time + '</span>';
       html += '</div>';
     });
-
     list.innerHTML = html;
     if (footer) footer.style.display = 'flex';
   }
 
-  function loadTracks() {
-    fetch(CMS_API + '/api/recent-tracks/935?ts=' + Date.now())
+  function loadTracks935() {
+    fetch(CMS_API_935 + '/api/recent-tracks/935?ts=' + Date.now())
       .then(function(r) { return r.json(); })
       .then(function(tracks) {
-        if (!tracks || !tracks.length) return;
-        renderTracks(tracks.map(function(t, i) {
-          return {
-            meta: t.artist.toUpperCase() + ' - ' + t.title.toUpperCase(),
-            image_url: t.image_url || null,
-            created_at: null,
-            localtime: t.localtime,
-            is_current: i === 0
-          };
-        }));
+        if (tracks && tracks.length) renderTracks935(tracks);
       })
-      .catch// Recently Played
-        var list = document.getElementById('crr-rp-list');
-        if (list && list.children.length <= 1) {
-          list.innerHTML = '<div style="font-size:12px;color:rgba(255,255,255,0.3);padding:8px 0;">Unable to load track data</div>';
-        }
-      });
+      .catch(function() {});
   }
 
-  // Use window.onload + small delay to ensure DOM is fully settled
-  // (layout.js runs async, weatherwidget injects scripts after DOMContentLoaded)
-  window.addEventListener('load', function() {
-    setTimeout// Recently Played
-      if (!document.getElementById('crr-rp-list')) return;
-      loadTracks();
-      rpTimer = setInterval(loadTracks, POLL_MS);
-    }, 500);
-  });
+  function initRP935() {
+    if (document.getElementById('crr-rp-list')) {
+      loadTracks935();
+      if (!window._crrRpTimer) window._crrRpTimer = setInterval(loadTracks935, 30000);
+    }
+  }
 
+  setTimeout(initRP935, 300);
+  window.addEventListener('load', function() { setTimeout(initRP935, 1000); });
 </script>
 
 
