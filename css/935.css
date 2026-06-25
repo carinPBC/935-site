@@ -129,3 +129,11 @@ body { background: #f5f5f5 !important; }
   border-bottom: 2px solid #a32600 !important;
 }
 #news-section .section-title { color: #291000 !important; }
+
+/* Footer red lines match brand red */
+.footer-col-title { border-bottom-color: #a32600 !important; }
+.footer-legal { border-top-color: rgba(163,38,0,0.3) !important; }
+
+/* News section background matches nav */
+#news-section { background: #ffffff !important; }
+body.crr-home { background: #ffffff !important; }

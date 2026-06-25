@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="images/logo-935-cream.svg" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/935-base.css?v=3" />
-  <link rel="stylesheet" href="css/935.css?v=5" />
+  <link rel="stylesheet" href="css/935.css?v=6" />
   <style id="nav-critical">
     nav.main-nav{background:#ffffff !important;position:relative !important;top:auto !important;z-index:auto !important;border-bottom:3px solid #a32600 !important;}
     .main-nav-inner{width:100%;padding:0 48px;display:flex;align-items:center;justify-content:space-between;min-height:150px;}
@@ -59,7 +59,7 @@
   <div id="home-top-row" style="display:grid;grid-template-columns:3fr 1fr;gap:0;align-items:start;background:#f8f9fa;">
 
     <!-- LEFT 2/3: News -->
-    <section style="padding:48px 48px;background:#f8f9fa;" id="news-section">
+    <section style="padding:48px 48px;background:#ffffff;" id="news-section">
       <div class="section-header">
         <h2 class="section-title" >Latest News</h2>
         <a href="pages/news.html" class="section-link">View All News &rsaquo;</a>
@@ -398,7 +398,7 @@
 
       // Music note
       if (t.image_url) {
-        html += '<img src="' + t.image_url + '" style="width:32px;height:32px;border-radius:3px;object-fit:cover;flex-shrink:0;" onerror="this.style.display='none'" />';
+                html += '<img src="' + t.image_url + '" style="width:32px;height:32px;border-radius:3px;object-fit:cover;flex-shrink:0;" onerror="this.style.display=&quot;none&quot;" />';
       } else {
         html += '<span style="font-size:12px;color:' +
           (isNow ? '#a32600' : 'rgba(255,255,255,0.2)') +
