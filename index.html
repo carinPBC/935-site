@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="images/logo-935-cream.svg" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/935-base.css?v=3" />
-  <link rel="stylesheet" href="css/935.css?v=6" />
+  <link rel="stylesheet" href="css/935.css?v=7" />
   <style id="nav-critical">
     nav.main-nav{background:#ffffff !important;position:relative !important;top:auto !important;z-index:auto !important;border-bottom:3px solid #a32600 !important;}
     .main-nav-inner{width:100%;padding:0 48px;display:flex;align-items:center;justify-content:space-between;min-height:150px;}
@@ -56,10 +56,10 @@
   <div id="crr-ad-banner" style="display:none;text-align:center;padding:12px 0;background:#f8f9fa;border-bottom:1px solid #e8ecf0;"></div>
 
   <!-- NEWS + VIDEO SIDEBAR (2/3 + 1/3) -->
-  <div id="home-top-row" style="display:grid;grid-template-columns:3fr 1fr;gap:0;align-items:start;background:#f8f9fa;">
+  <div id="home-top-row" style="display:grid;grid-template-columns:3fr 1fr;gap:0;align-items:start;background:transparent;">
 
     <!-- LEFT 2/3: News -->
-    <section style="padding:48px 48px;background:#ffffff;" id="news-section">
+    <section style="padding:48px 48px;background:transparent;" id="news-section">
       <div class="section-header">
         <h2 class="section-title" >Latest News</h2>
         <a href="pages/news.html" class="section-link">View All News &rsaquo;</a>
@@ -166,6 +166,10 @@
       if (Array.isArray(globals.active_pages)) return globals.active_pages;
       try { return JSON.parse(globals.active_pages); } catch(e) { return ['home','news','events','podcasts','schedule','shows','advertise','about','fcc','contact','public-inspection-help','employment','archive']; }
     }
+    // Apply station background color from globals
+    var pageBg = globals.page_bg || '#e9ba8f';
+    document.documentElement.style.setProperty('--page-bg', pageBg);
+    document.body.style.background = pageBg;
     var scheduleActive = activePages().indexOf('schedule') !== -1;
     var scheduleSection = document.getElementById('schedule-section');
     if (scheduleSection) scheduleSection.style.display = scheduleActive ? 'block' : 'none';
