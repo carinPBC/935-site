@@ -6,7 +6,7 @@
   <title>FCC Applications — 93.5 Classic Rock</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/935-base.css?v=9" />
-  <link rel="stylesheet" href="../css/935.css?v=14" />
+  <link rel="stylesheet" href="../css/935.css?v=15" />
   <style id="nav-critical">
     nav.main-nav{background:#ffffff !important;position:sticky !important;top:0 !important;z-index:9999 !important;}
     .main-nav-inner{width:100%;padding:0 48px;display:flex;align-items:center;justify-content:space-between;min-height:100px;}
@@ -295,7 +295,7 @@ function renderSection(s, i) {
     var sepColor = s.separator_color || '#a32600';
     var sepAlign = s.heading_align || 'left';
     var sepMargin = sepAlign === 'center' ? '10px auto 0' : sepAlign === 'right' ? '10px 0 0 auto' : '10px 0 0';
-    sepHtml = '<div style="width:48px;height:4px;background:' + sepColor + ';margin:' + sepMargin + ';"></div>';
+    sepHtml = '<div style="width:100%;height:3px;background:rgba(163,38,0,0.35);margin:' + sepMargin + ';display:block;"></div>';
   }
 
   // Body styles
@@ -332,8 +332,7 @@ function renderSection(s, i) {
   if (isHeader) {
     // Hero header: full-width centered layout
     var headerAlign = s.heading_align || 'center';
-    return '<div class="editorial-section" style="' + secStyle + 'text-align:' + headerAlign + ';padding:48px 24px 24px;">'
-      + '<div style="max-width:800px;margin:0 auto;">'
+    return '<div class="editorial-section" style="' + secStyle + 'text-align:' + headerAlign + ';padding:56px 0 32px;">'
       + '<' + hTag + ' style="' + hStyle + '">' + (s.heading||'') + '</' + hTag + '>'
       + sepHtml
       + (s.body ? '<div style="' + bStyle + 'margin-top:16px;">' + s.body.split('\n').map(function(p){ return p ? '<p style="margin-bottom:1em;">' + p + '</p>' : ''; }).join('') + '</div>' : '')
