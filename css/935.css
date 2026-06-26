@@ -289,7 +289,7 @@ nav.main-nav .nav-logo img,
 .nav-logo img {
   height: 150px !important;
 }
-.main-nav-inner { min-height: 150px !important; }
+.main-nav-inner { min-height: 180px !important; }
 
 /* 3. Weather band inner pages — match homepage #291000 */
 #kahm-weather-band,
