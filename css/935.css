@@ -267,3 +267,59 @@ input::placeholder, textarea::placeholder { color: rgba(26,10,0,0.45) !important
 .news-wrap, 
 #news-grid-container,
 .news-content { padding: 32px 96px !important; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   935 FIXES — June 26 2026
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* 1. News cards — contain image with padding (homepage + news page consistent) */
+.news-card img.news-card-img,
+.news-card-img {
+  width: calc(100% - 20px) !important;
+  height: 160px !important;
+  object-fit: contain !important;
+  display: block !important;
+  margin: 10px auto 0 !important;
+  background: #291000 !important;
+  border-radius: 4px 4px 0 0 !important;
+}
+
+/* 2. Nav logo — ALL pages same size (inner pages were inheriting base 110px) */
+nav.main-nav .nav-logo img,
+.nav-logo img {
+  height: 90px !important;
+}
+.main-nav-inner { min-height: 120px !important; }
+
+/* 3. Weather band inner pages — match homepage #291000 */
+#kahm-weather-band,
+[id$="-weather-band"],
+.weather-band {
+  background: #291000 !important;
+  border-bottom: 1px solid rgba(163,38,0,0.3) !important;
+}
+
+/* 4. Popup player — solid black bg */
+#crr-player-widget { background: #000000 !important; }
+#crr-player-header { background: #0d0500 !important; }
+#crr-controls { background: #0d0500 !important; }
+#crr-track-bar { background: rgba(0,0,0,0.5) !important; }
+
+/* 5. Interior pages — max-width with margins matching homepage */
+.content-wrap,
+.page-content,
+.editorial-section .container,
+.jobs-list,
+.eeo-wrap,
+.info-wrap {
+  max-width: 1200px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 96px !important;
+  padding-right: 96px !important;
+}
+@media (max-width: 900px) {
+  .content-wrap,
+  .page-content,
+  .eeo-wrap { padding-left: 24px !important; padding-right: 24px !important; }
+}

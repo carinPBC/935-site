@@ -85,7 +85,8 @@
         return l.url.startsWith('http') || isPageActive(cfg, pageKeyFromUrl(l.url));
       }).map(function(l) {
         var href = l.url.startsWith('http') ? l.url : root + l.url;
-        return '<li><a href="'+href+'">'+l.label+'</a></li>';
+        var tgt = l.target ? ' target="'+l.target+'" rel="noopener"' : '';
+        return '<li><a href="'+href+'"'+tgt+'>'+l.label+'</a></li>';
       }).join('');
       return '<div class="footer-col">'
         + '<div class="footer-col-title">'+col.title+'</div>'
@@ -478,8 +479,19 @@
           var showEl = document.getElementById('on-air-show');
           var timeEl = document.getElementById('on-air-time');
           if (bar) { bar.style.display = 'flex'; setStickyOffsets(); }
-          if (showEl) showEl.textContent = current.name;
-          if (timeEl) timeEl.textContent = fmtH(current.start_hour) + ' – ' + fmtH(current.end_hour);
+          // 935 has no shows/DJs — show current track instead
+          if (showEl) showEl.style.display = 'none';
+          if (timeEl) timeEl.textContent = '';
+          // Fetch current track
+          fetch('https://pbc-cms-production.up.railway.app/api/recent-tracks/935?ts=' + Date.now())
+            .then(function(r) { return r.json(); })
+            .then(function(tracks) {
+              if (tracks && tracks.length) {
+                var t = tracks[0];
+                var trackEl = document.getElementById('on-air-track');
+                if (trackEl) { trackEl.textContent = t.artist + ' — ' + t.title; }
+              }
+            }).catch(function(){});
           // Watch Live button only when show has a video_url
           if (watchBtn) {
             if (current.video_url) {

@@ -104,7 +104,8 @@
           },
           {
             "label": "Public Inspection File",
-            "url": "https://publicfiles.fcc.gov/fm-profile/935"
+            "url": "https://publicfiles.fcc.gov/fm-profile/935",
+            "target": "_blank"
           },
           {
             "label": "Public Inspection File Help",
