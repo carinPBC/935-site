@@ -378,3 +378,29 @@ nav.main-nav .nav-logo img,
 /* Separator comes from CMS section data - not forced by CSS */
 
 /* Gap handled by padding on editorial-section itself */
+
+/* ── Inner page spacing fixes ─────────────────────────────────────────────── */
+/* More breathing room between weather band and first heading */
+.editorial-section {
+  padding-top: 64px !important;
+  padding-bottom: 48px !important;
+}
+
+/* Buffer below content on short pages — prevent footer clinging */
+.content-wrap {
+  min-height: 400px !important;
+  padding-bottom: 80px !important;
+}
+
+/* News page specifically */
+#news-grid {
+  padding-bottom: 80px !important;
+}
+
+/* Generic page bottom buffer */
+body > div[id$="-content"],
+.eeo-wrap,
+.emp-wrap,
+.jobs-list {
+  padding-bottom: 80px !important;
+}
