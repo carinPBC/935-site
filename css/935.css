@@ -404,3 +404,30 @@ body > div[id$="-content"],
 .jobs-list {
   padding-bottom: 80px !important;
 }
+
+/* ── Page hero — breathing room below weather band (matches homepage 48px top) ── */
+.page-hero {
+  padding-top: 48px !important;
+  padding-bottom: 8px !important;
+  padding-left: 96px !important;
+  padding-right: 96px !important;
+  box-sizing: border-box !important;
+}
+.page-hero h1 {
+  font-size: clamp(24px, 3vw, 40px) !important;
+  font-weight: 900 !important;
+  color: #291000 !important;
+  margin-bottom: 8px !important;
+}
+.page-hero p {
+  font-size: 16px !important;
+  color: rgba(41,16,0,0.7) !important;
+  margin-bottom: 0 !important;
+}
+@media (max-width: 900px) {
+  .page-hero {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    padding-top: 32px !important;
+  }
+}
