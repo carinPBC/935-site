@@ -386,7 +386,29 @@
     }, 50);
     if (footerEl) footerEl.innerHTML = buildFooter(cfg);
     // Homepage has its own hardcoded on-air bar logic — skip on index
-    if (!window.location.pathname.endsWith("index.html") && window.location.pathname !== "/") initOnAirBar();
+    if (!window.location.pathname.endsWith("index.html") && window.location.pathname !== "/") {
+      initOnAirBar();
+      // Independent track refresh for inner pages
+      function refreshInnerTrack() {
+        fetch('https://pbc-cms-production.up.railway.app/api/recent-tracks/935?ts=' + Date.now())
+          .then(function(r) { return r.json(); })
+          .then(function(tracks) {
+            if (tracks && tracks.length) {
+              var t = tracks[0];
+              var trackEl = document.getElementById('on-air-track');
+              if (trackEl) {
+                trackEl.textContent = t.artist + ' — ' + t.title;
+                trackEl.style.fontWeight = '700';
+                trackEl.style.color = '#ffffff';
+                trackEl.style.fontStyle = 'normal';
+                trackEl.style.fontSize = '14px';
+              }
+            }
+          }).catch(function(){});
+      }
+      setTimeout(refreshInnerTrack, 800);
+      if (!window.CRR_INNER_TRACK_TIMER) window.CRR_INNER_TRACK_TIMER = setInterval(refreshInnerTrack, 30000);
+    }
 
     initSearch(root);
     applyTheme(theme);
