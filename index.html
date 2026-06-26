@@ -241,6 +241,28 @@
     }
     updateHomeOnAirBar();
     if (!window.CRR_HOME_ON_AIR_TIMER) window.CRR_HOME_ON_AIR_TIMER = setInterval(updateHomeOnAirBar, 30000);
+
+    // Independent track display refresh — runs immediately and every 30s
+    function refreshOnAirTrack() {
+      fetch('https://pbc-cms-production.up.railway.app/api/recent-tracks/935?ts=' + Date.now())
+        .then(function(r) { return r.json(); })
+        .then(function(tracks) {
+          if (tracks && tracks.length) {
+            var t = tracks[0];
+            var trackEl = document.getElementById('on-air-track');
+            if (trackEl) {
+              trackEl.textContent = t.artist + ' — ' + t.title;
+              trackEl.style.fontWeight = '700';
+              trackEl.style.color = '#ffffff';
+              trackEl.style.fontStyle = 'normal';
+              trackEl.style.fontSize = '14px';
+            }
+          }
+        }).catch(function(){});
+    }
+    // Run immediately after a short delay to ensure bar is visible
+    setTimeout(refreshOnAirTrack, 500);
+    if (!window.CRR_TRACK_TIMER) window.CRR_TRACK_TIMER = setInterval(refreshOnAirTrack, 30000);
     window.addEventListener('focus', updateHomeOnAirBar);
     document.addEventListener('visibilitychange', function(){ if (!document.hidden) updateHomeOnAirBar(); });
 
