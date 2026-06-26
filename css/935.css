@@ -13,7 +13,7 @@ body { background: var(--page-bg); }
 
 /* Nav — white background, black + red accents */
 nav.main-nav { background: #ffffff !important; border-bottom: none !important; }
-.nav-logo img { height: 120px; }
+.nav-logo img { height: 150px; }
 .nav-links li a { color: #291000 !important; }
 .nav-links li a:hover { color: #a32600 !important; }
 .nav-links li a.active { color: #a32600 !important; border-bottom-color: #a32600 !important; }
@@ -64,7 +64,7 @@ nav.main-nav  { position: relative !important; top: auto !important; }
 #crr-weather-band { position: relative !important; top: auto !important; }
 
 /* Footer logo */
-.footer-logo img { height: 120px !important; margin-bottom: 6px !important; }
+.footer-logo img { height: 80px !important; margin-bottom: 6px !important; }
 .footer-tagline { display: none !important; }
 
 /* Body */
@@ -287,9 +287,9 @@ input::placeholder, textarea::placeholder { color: rgba(26,10,0,0.45) !important
 /* 2. Nav logo — ALL pages same size (inner pages were inheriting base 110px) */
 nav.main-nav .nav-logo img,
 .nav-logo img {
-  height: 90px !important;
+  height: 150px !important;
 }
-.main-nav-inner { min-height: 120px !important; }
+.main-nav-inner { min-height: 150px !important; }
 
 /* 3. Weather band inner pages — match homepage #291000 */
 #kahm-weather-band,
