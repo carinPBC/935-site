@@ -323,3 +323,53 @@ nav.main-nav .nav-logo img,
   .page-content,
   .eeo-wrap { padding-left: 24px !important; padding-right: 24px !important; }
 }
+
+/* ── Inner page section inset — match homepage 96px sides ───────────────── */
+.editorial-section {
+  padding-left: 96px !important;
+  padding-right: 96px !important;
+  box-sizing: border-box !important;
+}
+.editorial-section > div[style*="max-width"] {
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+/* Also fix the page-hero section and inquiry/psa sections */
+.page-hero,
+.inquiry-section,
+.psa-section,
+.event-submit-section,
+.cards-section,
+.schedule-wrap {
+  padding-left: 96px !important;
+  padding-right: 96px !important;
+  box-sizing: border-box !important;
+}
+/* Employment/jobs specific */
+.jobs-list,
+.jobs-wrap { 
+  padding: 32px 96px !important;
+}
+/* EEO page */
+.eeo-wrap {
+  padding: 48px 96px !important;
+}
+/* Info tables on FCC/archive pages */
+.content-wrap.eeo-wrap,
+.content-wrap { 
+  padding: 48px 96px !important;
+}
+@media (max-width: 900px) {
+  .editorial-section,
+  .page-hero,
+  .inquiry-section,
+  .psa-section,
+  .event-submit-section,
+  .jobs-list,
+  .eeo-wrap,
+  .content-wrap {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
