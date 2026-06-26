@@ -4,8 +4,8 @@
     "tagline": "Prescott's Classic Rock",
     "stationId": "935",
     "logo": "images/logo-935-cream.svg",
-    "logoWhite": "images/logo-kahm.png",
-    "favicon": "images/logo-kahm.png",
+    "logoWhite": "images/logo-935-cream.svg",
+    "favicon": "images/logo-935.png",
     "apiBase": "https://pbc-cms-production.up.railway.app",
     "social": {
       "facebook": "https://facebook.com/prescottbroadcasting",
