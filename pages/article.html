@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/935-base.css?v=9" />
-  <link rel="stylesheet" href="../css/935.css?v=21" />
+  <link rel="stylesheet" href="../css/935.css?v=22" />
   <style id="nav-critical">
     nav.main-nav{background:#ffffff !important;position:sticky !important;top:0 !important;z-index:9999 !important;}
     .main-nav-inner{width:100%;padding:0 48px;display:flex;align-items:center;justify-content:space-between;min-height:180px;}
@@ -29,6 +29,7 @@
     @media(max-width:900px){.main-nav-inner{padding:0 20px;}}
     @media(max-width:640px){.nav-links-wrap{display:none !important;}.nav-hamburger{display:flex !important;}}
   </style>
+  <style id="site-bg-early">body,html{background:#f7ecd8 !important;}</style>
   <style>
     .article-wrap { max-width: 860px; margin: 0 auto; padding: 48px 24px; }
     .article-back { display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#a32600;text-transform:uppercase;letter-spacing:.05em;text-decoration:none;margin-bottom:28px; }
@@ -213,7 +214,7 @@
     fetch(A + '/api/station-globals/935')
       .then(function(r){return r.json();})
       .then(function(g){
-        var bg = g.page_bg || '#e9ba8f';
+        var bg = g.page_bg || '#f7ecd8';
         var wbg = g.weather_band_bg || '#291000';
         document.documentElement.style.setProperty('--page-bg', bg);
         document.documentElement.style.setProperty('--weather-band-bg', wbg);
