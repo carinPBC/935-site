@@ -31,7 +31,7 @@ nav.main-nav { background: #ffffff !important; border-bottom: none !important; }
 .on-air-badge { background: #a32600 !important; }
 
 /* Weather band — BLACK */
-#crr-weather-band, #crr-weather-report { background: #012445 !important; }
+#crr-weather-band, #crr-weather-report { background: var(--weather-band-bg, #291000) !important; }
 
 /* Section accents */
 .section-link { color: #a32600 !important; }
@@ -170,7 +170,7 @@ nav.main-nav,
 nav.main-nav { background-color: #ffffff !important; }
 footer { background-color: #291000 !important; }
 .on-air-bar { background-color: #291000 !important; }
-#crr-weather-band { background-color: #012445 !important; }
+#crr-weather-band { background-color: var(--weather-band-bg, #291000) !important; }
 #home-video-sidebar { background-color: #291000 !important; }
 .news-card { background-color: #291000 !important; }
 
@@ -295,7 +295,7 @@ nav.main-nav .nav-logo img,
 #kahm-weather-band,
 [id$="-weather-band"],
 .weather-band {
-  background: #012445 !important;
+  background: var(--weather-band-bg, #291000) !important;
   border-bottom: 1px solid rgba(163,38,0,0.3) !important;
 }
 
