@@ -325,6 +325,8 @@ nav.main-nav .nav-logo img,
 .editorial-section {
   padding-left: 96px !important;
   padding-right: 96px !important;
+  padding-top: 56px !important;
+  padding-bottom: 32px !important;
   box-sizing: border-box !important;
 }
 .editorial-section > div[style*="max-width"] {
@@ -373,16 +375,6 @@ nav.main-nav .nav-logo img,
 /* Remove short stub separator — replaced by full-width dark line from section renderer */
 .section-title::after { display: none !important; }
 
-/* Full-width separator style — matches homepage section-header border */
-.editorial-section > div > h1,
-.editorial-section > h1,
-.editorial-section > div > h2 {
-  padding-bottom: 16px !important;
-  border-bottom: 3px solid rgba(163,38,0,0.35) !important;
-  margin-bottom: 8px !important;
-}
+/* Separator comes from CMS section data - not forced by CSS */
 
-/* Match homepage gap between weather band and first section heading */
-.editorial-section:first-of-type {
-  padding-top: 56px !important;
-}
+/* Gap handled by padding on editorial-section itself */
