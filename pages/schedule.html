@@ -6,7 +6,7 @@
   <title>Program Schedule — 93.5 Classic Rock</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/935-base.css?v=9" />
-  <link rel="stylesheet" href="../css/935.css?v=13" />
+  <link rel="stylesheet" href="../css/935.css?v=14" />
   <style id="nav-critical">
     nav.main-nav{background:#ffffff !important;position:sticky !important;top:0 !important;z-index:9999 !important;}
     .main-nav-inner{width:100%;padding:0 48px;display:flex;align-items:center;justify-content:space-between;min-height:100px;}
@@ -106,7 +106,7 @@
   <!-- WEATHER BAND -->
   <div id="kahm-weather-band" style="background:#111111;border-bottom:1px solid rgba(255,255,255,0.08);overflow:hidden;height:120px;display:flex;align-items:center;">
     <div style="flex:1;overflow:hidden;height:95px;position:relative;margin-top:4px;">
-      <a class="weatherwidget-io" href="https://forecast7.com/en/34d54n112d47/prescott/?unit=us" data-label_1="PRESCOTT" data-label_2="WEATHER" data-theme="original" data-basecolor="#111111" data-days="7">PRESCOTT WEATHER</a>
+      <a class="weatherwidget-io" href="https://forecast7.com/en/34d54n112d47/prescott/?unit=us" data-label_1="PRESCOTT" data-label_2="WEATHER" data-theme="original" data-basecolor="#291000" data-days="7">PRESCOTT WEATHER</a>
     </div>
     <div id="kahm-weather-report" style="flex-shrink:0;display:none;align-items:center;gap:8px;padding:0 20px;border-left:1px solid rgba(255,255,255,0.1);min-width:520px;background:#111111;">
       <span style="font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,0.5);">&#127925; Today&#39;s Report</span>
@@ -229,15 +229,22 @@
 <script src="../js/player.js?v=14"></script>
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');</script>
 <script>
-  // Station background color from globals
+  // Station background + weather band color from globals
   (function() {
     var A = 'https://pbc-cms-production.up.railway.app';
     fetch(A + '/api/station-globals/935')
       .then(function(r){return r.json();})
       .then(function(g){
         var bg = g.page_bg || '#e9ba8f';
+        var wbg = g.weather_band_bg || '#291000';
         document.documentElement.style.setProperty('--page-bg', bg);
+        document.documentElement.style.setProperty('--weather-band-bg', wbg);
         document.body.style.background = bg;
+        // Update weatherwidget basecolor before it renders
+        var ww = document.querySelector('.weatherwidget-io');
+        if (ww) ww.setAttribute('data-basecolor', wbg);
+        // Update weather band container
+        document.querySelectorAll('[id$="-weather-band"]').forEach(function(el){ el.style.background = wbg; });
         var s = document.getElementById('pbc-page-bg');
         if (!s){s=document.createElement('style');s.id='pbc-page-bg';document.head.appendChild(s);}
         s.textContent = 'body,section,.content-wrap,.page-hero,.editorial-section,.inquiry-section,.psa-section,.event-submit-section,.cards-section,.schedule-wrap{background:'+bg+' !important}';
