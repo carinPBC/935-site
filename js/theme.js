@@ -72,19 +72,8 @@
 
   // Load and apply
   // Load shared theme then override with 935-specific station globals
-  fetch(API + '/api/theme')
+    fetch(API + '/api/theme?station=935')
     .then(function(r) { return r.json(); })
-    .then(function(t) {
-      // Override shared content_bg with 935 station globals
-      return fetch(API + '/api/station-globals/935')
-        .then(function(r2) { return r2.json(); })
-        .then(function(g) {
-          if (g.page_bg) t.content_bg = g.page_bg;
-          if (g.weather_band_bg) t.weather_band_bg = g.weather_band_bg;
-          return t;
-        })
-        .catch(function() { return t; });
-    })
     .then(function(t) { applyTheme(t); })
     .catch(function() {}); // fail silently — CSS fallbacks handle it
 })();
