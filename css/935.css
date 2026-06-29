@@ -233,6 +233,11 @@ input, textarea, select { background-color: transparent; }
 }
 .on-air-badge {
   background: #a32600 !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: .05em !important;
+  padding: 6px 14px !important;
+  border-radius: 6px !important;
 }
 /* The inner-page on-air bar Listen Live button */
 .on-air-bar a[data-listen] {
