@@ -411,6 +411,9 @@
       if (!window.CRR_INNER_TRACK_TIMER) window.CRR_INNER_TRACK_TIMER = setInterval(refreshInnerTrack, 30000);
     }
 
+    window.S935_CFG = cfg;
+    window.S935_API = API;
+    window.S935_ROOT = root;
     initSearch(root);
     applyTheme(theme);
     initAdBanner();
