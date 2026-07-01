@@ -248,7 +248,7 @@
     localStorage.setItem(STORAGE_KEY, '1');
     startAudio();
     fetchTrack();
-    if (!trackTimer) trackTimer = setInterval(fetchTrack, 30000);
+    if (!trackTimer) trackTimer = setInterval(fetchTrack, 10000);
   }
 
   function minimizePlayer() {

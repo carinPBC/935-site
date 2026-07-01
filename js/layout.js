@@ -408,7 +408,7 @@
           }).catch(function(){});
       }
       setTimeout(refreshInnerTrack, 800);
-      if (!window.CRR_INNER_TRACK_TIMER) window.CRR_INNER_TRACK_TIMER = setInterval(refreshInnerTrack, 30000);
+      if (!window.CRR_INNER_TRACK_TIMER) window.CRR_INNER_TRACK_TIMER = setInterval(refreshInnerTrack, 10000);
     }
 
     window.S935_CFG = cfg;
@@ -463,7 +463,7 @@
     var API_URL = window.CRR_API || 'https://pbc-cms-production.up.railway.app';
     // Keep on-air bar current for visitors who leave the site open.
     if (!window.KAHM_ON_AIR_TIMER) {
-      window.KAHM_ON_AIR_TIMER = setInterval(initOnAirBar, 60000);
+      window.KAHM_ON_AIR_TIMER = setInterval(initOnAirBar, 10000);
       window.addEventListener('focus', initOnAirBar);
       document.addEventListener('visibilitychange', function() {
         if (!document.hidden) initOnAirBar();
