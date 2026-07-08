@@ -118,6 +118,7 @@
       +   '<div class="footer-legal-links">'
       +     '<a href="'+root+cfg.footer.legal.privacyPolicyUrl.replace(/^\//, '')+'">Privacy Policy</a>'
       +     '<a href="'+root+cfg.footer.legal.termsUrl.replace(/^\//, '')+'">Terms of Use</a>'
+      +     '<a href="https://cms.prescottbroadcasting.com/admin/" target="_blank" rel="noopener">CMS Login</a>'
       +   '</div>'
       + '</div>'
       + '</footer>';
