@@ -114,10 +114,6 @@
           {
             "label": "EEO",
             "url": "pages/eeo.html"
-          },
-          {
-            "label": "CMS Login",
-            "url": "https://pbc-cms-production.up.railway.app/admin/"
           }
         ]
       }
