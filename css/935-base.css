@@ -1055,4 +1055,10 @@ a.content-card-link:hover .content-card-title { color: var(--red); }
     min-height: 0 !important;
     padding: 0 !important;
   }
+  /* Resize hero images to fit without cropping on mobile */
+  .hero img {
+    min-height: 0 !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
 }
