@@ -443,3 +443,8 @@ body > div[id$="-content"],
 .nav-app-btn { display:inline-flex; align-items:center; gap:5px; background:#a32600; color:#fff !important; font-size:10px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; padding:5px 10px; border-radius:5px; text-decoration:none; transition:background .15s; white-space:nowrap; }
 .nav-app-btn:hover { background:#7a1d00; }
 @media (max-width:900px) { .nav-app-strip { display:none; } }
+
+/* ── Mobile responsive — news grid 1-column (missing from original 4/2-col rules) ── */
+@media (max-width: 768px) {
+  .news-grid { grid-template-columns: 1fr !important; }
+}
