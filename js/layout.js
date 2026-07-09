@@ -179,6 +179,9 @@
             wrap.style.top = '100%';
             wrap.style.left = '0';
             wrap.style.right = '0';
+            wrap.style.background = getComputedStyle(document.querySelector('nav.main-nav')).backgroundColor;
+            wrap.style.padding = '16px 24px';
+            wrap.style.boxShadow = '0 8px 16px rgba(0,0,0,.12)';
             wrap.style.zIndex = '200';
             nl.style.display = 'flex';
             nl.style.flexDirection = 'column';

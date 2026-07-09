@@ -1062,3 +1062,37 @@ a.content-card-link:hover .content-card-title { color: var(--red); }
     object-fit: contain !important;
   }
 }
+
+/* Prevent nav overflow / horizontal scroll on mobile — logo + hamburger + socials
+   must never exceed viewport width regardless of any inline nav-critical override */
+@media (max-width: 640px) {
+  html, body { overflow-x: hidden; max-width: 100vw; }
+  .main-nav-inner {
+    flex-wrap: nowrap !important;
+    overflow: hidden !important;
+    padding: 0 16px !important;
+  }
+  .nav-logo {
+    min-width: 0 !important;
+    flex-shrink: 1 !important;
+    overflow: hidden !important;
+  }
+  .nav-logo img {
+    height: 52px !important;
+    max-width: 150px !important;
+    width: auto !important;
+    min-width: 0 !important;
+  }
+  .nav-right {
+    flex-shrink: 0 !important;
+    min-width: 0 !important;
+  }
+  .nav-social {
+    gap: 6px !important;
+  }
+  .nav-social a {
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 14px !important;
+  }
+}
