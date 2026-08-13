@@ -153,7 +153,15 @@
     }).join('');
   }
 
+  // Private preview bypass: ?preview=1 renders the live contest content
+  // without touching (or even reading twice) the CMS active_pages state.
+  // Not linked anywhere public — only reachable by whoever has the exact URL.
+  function isPreviewRequest() {
+    return /(?:^\?|[?&])preview=1(?:&|$)/.test(window.location.search);
+  }
+
   function isContestLive(g) {
+    if (isPreviewRequest()) return true;
     // Safe default: hidden unless active_pages is an explicit list that
     // includes 'contest'. Matches the CMS Page Visibility toggle.
     var ap = g && g.active_pages;
