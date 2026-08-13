@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="../images/logo-935-cream.svg" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contest — 93.5 Classic Rock</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/935-base.css?v=10" />
+  <link rel="stylesheet" href="../css/935.css?v=27" />
+  <style id="nav-critical">
+    nav.main-nav{background:#ffffff !important;position:sticky !important;top:0 !important;z-index:9999 !important;}
+    .main-nav-inner{width:100%;padding:0 48px;display:flex;align-items:center;justify-content:space-between;min-height:180px;}
+    .nav-logo img{height:180px;width:auto;object-fit:contain;}
+    .nav-search{background:none;border:none;cursor:pointer;color:#1a2f4e;padding:6px;display:flex;align-items:center;}
+    .nav-hamburger{display:none;background:none;border:none;cursor:pointer;color:#1a2f4e;padding:6px;}
+    @media(max-width:900px){.main-nav-inner{padding:0 20px;}}
+    @media(max-width:640px){.nav-links-wrap{display:none !important;}.nav-hamburger{display:flex !important;}}
+  </style>
+  <style>
+    .content-wrap{max-width:1100px;margin:0 auto;padding:48px 96px;}
+    .contest-header{text-align:center;margin-bottom:36px;}
+    .contest-header h1{font-size:clamp(28px,4vw,48px);font-weight:900;color:#111111;text-transform:uppercase;letter-spacing:.03em;line-height:1.1;margin-bottom:12px;}
+    .contest-header h1::after{content:'';display:block;width:64px;height:4px;background:#a32600;margin:14px auto 0;}
+    .contest-header p{font-size:16px;color:#546e7a;line-height:1.7;max-width:640px;margin:0 auto;}
+    .contest-photo-wrap{margin:0 auto 40px;max-width:820px;}
+    .contest-photo-wrap a{display:block;}
+    .contest-photo{width:100%;display:block;border-radius:12px;object-fit:cover;box-shadow:0 4px 24px rgba(0,0,0,.12);}
+    .contest-photo-placeholder{width:100%;aspect-ratio:16/9;border-radius:12px;background:#e8ddc7;border:2px dashed #c9b58f;display:flex;align-items:center;justify-content:center;font-size:14px;color:#9c8a68;font-weight:600;text-align:center;padding:24px;}
+    /* Entry form */
+    .entry-section{max-width:640px;margin:0 auto 56px;}
+    .entry-card{background:#fff;border-radius:12px;padding:40px;box-shadow:0 2px 20px rgba(0,0,0,.07);}
+    .entry-card h2{font-size:22px;font-weight:900;color:#111111;text-transform:uppercase;letter-spacing:.03em;margin-bottom:6px;}
+    .entry-card h2::after{content:'';display:block;width:48px;height:4px;background:#a32600;margin-top:10px;}
+    .entry-card .entry-sub{font-size:14px;color:#546e7a;line-height:1.6;margin:12px 0 24px;}
+    .entry-field{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;}
+    .entry-field label{font-size:11px;font-weight:700;color:#546e7a;text-transform:uppercase;letter-spacing:.05em;}
+    .entry-field input{padding:12px 14px;border:1.5px solid #dde3ea;border-radius:8px;font-size:15px;font-family:inherit;outline:none;background:#fff;color:#1a2f4e;transition:border-color .15s,box-shadow .15s;}
+    .entry-field input:focus{border-color:#111111;box-shadow:0 0 0 3px rgba(3,42,72,.08);}
+    .entry-submit{width:100%;padding:15px 40px;background:#a32600;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:.06em;transition:background .15s,transform .1s;margin-top:6px;}
+    .entry-submit:hover{background:#315f83;transform:translateY(-1px);}
+    .entry-submit:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+    .entry-success{display:none;text-align:center;padding:40px 24px;}
+    .entry-success .ic{font-size:44px;margin-bottom:14px;}
+    .entry-success h3{font-size:22px;font-weight:800;color:#111111;margin-bottom:8px;}
+    .entry-success p{color:#546e7a;font-size:15px;line-height:1.6;}
+    .entry-legal-note{font-size:12px;color:#90a4ae;line-height:1.5;margin-top:16px;text-align:center;}
+    /* Rules */
+    .rules-section{max-width:820px;margin:0 auto;background:#fff;border-radius:12px;padding:40px 44px;box-shadow:0 2px 20px rgba(0,0,0,.05);}
+    .rules-section h1,.rules-section h2,.rules-section h3{color:#111111;line-height:1.25;}
+    .rules-section h1{font-size:24px;font-weight:900;text-transform:uppercase;letter-spacing:.02em;margin:0 0 18px;padding-bottom:12px;border-bottom:3px solid #a32600;}
+    .rules-section h2{font-size:17px;font-weight:800;margin:26px 0 10px;}
+    .rules-section p{font-size:14px;color:#37474f;line-height:1.75;margin:0 0 14px;}
+    .rules-section strong{color:#111111;}
+    .rules-title{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#a32600;text-align:center;margin:0 0 20px;}
+    /* Gate (page not live yet) */
+    .contest-gate{max-width:640px;margin:80px auto;text-align:center;padding:0 24px;}
+    .contest-gate h1{font-size:28px;font-weight:900;color:#111111;text-transform:uppercase;letter-spacing:.03em;margin-bottom:14px;}
+    .contest-gate p{font-size:16px;color:#546e7a;line-height:1.7;}
+    .contest-gate a{color:#a32600;font-weight:700;text-decoration:none;}
+    @media(max-width:768px){
+      .content-wrap{padding:32px 20px;}
+      .entry-card,.rules-section{padding:28px 20px;}
+    }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <!-- WEATHER BAND -->
+  <div id="kahm-weather-band" style="background:#111111;border-bottom:1px solid rgba(255,255,255,0.08);overflow:hidden;height:120px;display:flex;align-items:center;">
+    <div style="flex:1;overflow:hidden;height:95px;position:relative;margin-top:4px;">
+      <a class="weatherwidget-io" href="https://forecast7.com/en/34d54n112d47/prescott/?unit=us" data-label_1="PRESCOTT" data-label_2="WEATHER" data-theme="original" data-basecolor="#291000" data-days="7">PRESCOTT WEATHER</a>
+    </div>
+    <div id="kahm-weather-report" style="flex-shrink:0;display:none;align-items:center;gap:8px;padding:0 20px;border-left:1px solid rgba(255,255,255,0.1);min-width:520px;background:#111111;">
+      <span style="font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,0.5);">&#127925; Today&#39;s Report</span>
+      <div id="kahm-weather-player"></div>
+    </div>
+  </div>
+
+  <!-- Not-live gate (shown until CMS "Contest Page" visibility is turned on) -->
+  <div id="contest-gate" class="contest-gate" style="display:none;">
+    <h1>Nothing to see here yet</h1>
+    <p>There&#39;s no active contest right now. Check back soon &mdash; or head back to the <a href="../index.html">homepage</a>.</p>
+  </div>
+
+  <!-- Contest content (revealed only when the page is live) -->
+  <div id="contest-main" style="display:none;">
+    <div class="content-wrap">
+      <div class="contest-header">
+        <h1 id="contest-headline">Contest</h1>
+        <p id="contest-intro" style="display:none;"></p>
+      </div>
+
+      <div class="contest-photo-wrap" id="contest-photo-wrap"></div>
+
+      <div class="entry-section">
+        <div class="entry-card">
+          <form id="entry-form" onsubmit="submitContest(event)">
+            <h2>Enter to Win</h2>
+            <p class="entry-sub">Fill out the form below for your chance to win. One entry per person.</p>
+            <div class="entry-field"><label>Full Name</label><input type="text" id="ce-name" placeholder="Jane Smith" required /></div>
+            <div class="entry-field"><label>Phone Number</label><input type="tel" id="ce-phone" placeholder="(928) 555-0123" required /></div>
+            <div class="entry-field"><label>Email Address</label><input type="email" id="ce-email" placeholder="jane@example.com" required /></div>
+            <button type="submit" class="entry-submit">Submit Entry</button>
+            <div class="entry-legal-note">No purchase necessary. By entering you agree to the Official Rules below. See rules for eligibility and entry deadline.</div>
+          </form>
+          <div class="entry-success" id="entry-success">
+            <div class="ic">&#127881;</div>
+            <h3>You&#39;re entered!</h3>
+            <p>Thanks for entering. Good luck &mdash; winners are contacted using the details you provided.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rules-section" id="rules-section" style="display:none;">
+        <div class="rules-title">Official Rules</div>
+        <div id="contest-rules"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="site-footer"></div>
+  <script src="../js/layout.js?v=2" data-depth="1"></script>
+
+  <script>
+  var API_URL = "https://pbc-cms-production.up.railway.app";
+
+  // Resolve a CMS-stored image reference to a loadable URL.
+  function contestImgUrl(ref) {
+    if (!ref) return '';
+    if (/^https?:\/\//.test(ref)) return ref;
+    return API_URL + '/' + ref.replace(/^\//, '');
+  }
+
+  // Minimal, safe markdown-lite renderer for the official-rules text.
+  // Supports: # / ## / ### headings, **bold**, and blank-line paragraphs.
+  function renderRules(text) {
+    function esc(s) {
+      return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+    function inline(s) {
+      return esc(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    }
+    var blocks = text.replace(/\r\n/g, '\n').split(/\n{2,}/);
+    return blocks.map(function(b) {
+      var line = b.trim();
+      if (!line) return '';
+      if (line.indexOf('### ') === 0) return '<h3>' + inline(line.slice(4)) + '</h3>';
+      if (line.indexOf('## ')  === 0) return '<h2>' + inline(line.slice(3)) + '</h2>';
+      if (line.indexOf('# ')   === 0) return '<h1>' + inline(line.slice(2)) + '</h1>';
+      // Preserve single newlines inside a paragraph as <br>
+      return '<p>' + inline(line).replace(/\n/g, '<br>') + '</p>';
+    }).join('');
+  }
+
+  function isContestLive(g) {
+    // Safe default: hidden unless active_pages is an explicit list that
+    // includes 'contest'. Matches the CMS Page Visibility toggle.
+    var ap = g && g.active_pages;
+    if (!ap) return false;
+    if (typeof ap === 'string') { try { ap = JSON.parse(ap); } catch (e) { return false; } }
+    return Array.isArray(ap) && ap.indexOf('contest') !== -1;
+  }
+
+  function renderContest(g) {
+    // Headline + intro
+    var headline = g.contest_headline || 'Contest';
+    document.getElementById('contest-headline').textContent = headline;
+    document.title = headline + ' \u2014 93.5 Classic Rock';
+    if (g.contest_intro) {
+      var introEl = document.getElementById('contest-intro');
+      introEl.textContent = g.contest_intro;
+      introEl.style.display = 'block';
+    }
+
+    // Photo (clickable when a link is configured)
+    var wrap = document.getElementById('contest-photo-wrap');
+    var photo = contestImgUrl(g.contest_photo);
+    if (photo) {
+      var img = '<img class="contest-photo" src="' + photo + '" alt="' + headline + '" />';
+      var link = (g.contest_photo_link || '').trim();
+      wrap.innerHTML = link
+        ? '<a href="' + link + '" target="_blank" rel="noopener">' + img + '</a>'
+        : img;
+    } else {
+      wrap.innerHTML = '<div class="contest-photo-placeholder">Contest photo coming soon</div>';
+    }
+
+    // Official rules
+    if (g.contest_rules && g.contest_rules.trim()) {
+      document.getElementById('contest-rules').innerHTML = renderRules(g.contest_rules);
+      document.getElementById('rules-section').style.display = 'block';
+    }
+  }
+
+  fetch(API_URL + '/api/station-globals/935')
+    .then(function(r) { return r.json(); })
+    .then(function(g) {
+      if (isContestLive(g)) {
+        renderContest(g);
+        document.getElementById('contest-main').style.display = 'block';
+      } else {
+        document.getElementById('contest-gate').style.display = 'block';
+      }
+    })
+    .catch(function() {
+      document.getElementById('contest-gate').style.display = 'block';
+    });
+
+  function submitContest(e) {
+    e.preventDefault();
+    var name  = document.getElementById('ce-name').value.trim();
+    var phone = document.getElementById('ce-phone').value.trim();
+    var email = document.getElementById('ce-email').value.trim();
+    if (!name || !phone || !email) { alert('Please fill in all fields.'); return; }
+    var btn = e.target.querySelector('[type=submit]');
+    btn.disabled = true; btn.textContent = 'Submitting\u2026';
+    fetch(API_URL + '/api/submit/contest', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, phone: phone, email: email, station: '935' })
+    }).then(function(r) { return r.json(); }).then(function(res) {
+      if (res.ok) {
+        document.getElementById('entry-form').style.display = 'none';
+        document.getElementById('entry-success').style.display = 'block';
+      } else {
+        btn.disabled = false; btn.textContent = 'Submit Entry';
+        alert('Something went wrong. Please try again.');
+      }
+    }).catch(function() {
+      btn.disabled = false; btn.textContent = 'Submit Entry';
+      alert('Something went wrong. Please try again.');
+    });
+  }
+  </script>
+
+  <script src="../js/player.js?v=14"></script>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');</script>
+  <script>
+  // Station background + weather band color from globals
+  (function() {
+    var A = 'https://pbc-cms-production.up.railway.app';
+    fetch(A + '/api/station-globals/935')
+      .then(function(r){return r.json();})
+      .then(function(g){
+        var bg = g.page_bg || '#e9ba8f';
+        var wbg = g.weather_band_bg || '#291000';
+        document.documentElement.style.setProperty('--page-bg', bg);
+        document.documentElement.style.setProperty('--weather-band-bg', wbg);
+        document.body.style.background = bg;
+        var ww = document.querySelector('.weatherwidget-io');
+        if (ww) ww.setAttribute('data-basecolor', wbg);
+        document.querySelectorAll('[id$="-weather-band"]').forEach(function(el){ el.style.background = wbg; });
+        var s = document.getElementById('pbc-page-bg');
+        if (!s){s=document.createElement('style');s.id='pbc-page-bg';document.head.appendChild(s);}
+        s.textContent = 'body,section,.content-wrap,.page-hero{background:'+bg+' !important}';
+      }).catch(function(){});
+  })();
+  </script>
+</body>
+</html>
+
