@@ -125,11 +125,28 @@
   <script>
   var API_URL = "https://pbc-cms-production.up.railway.app";
 
-  // Resolve a CMS-stored image reference to a loadable URL.
-  function contestImgUrl(ref) {
+  function escHtml(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  // Resolve a CMS-stored image reference the same way every other station
+  // page does: uploads/* are served by the API, anything else is site-relative.
+  function pageImgUrl(ref) {
     if (!ref) return '';
     if (/^https?:\/\//.test(ref)) return ref;
-    return API_URL + '/' + ref.replace(/^\//, '');
+    if (ref.indexOf('uploads/') === 0) return API_URL + '/' + ref;
+    return '../' + ref.replace(/^\//, '');
+  }
+
+  // Keep CMS-entered links to navigable schemes — never javascript:/data:.
+  function safeUrl(url) {
+    var v = String(url || '').trim();
+    if (!v) return '';
+    if (/^(https?:)?\/\//i.test(v) || /^[\/.#]/.test(v)) return v;
+    if (/^[a-z][a-z0-9+.-]*:/i.test(v)) return '';
+    return 'https://' + v;
   }
 
   // Minimal, safe markdown-lite renderer for the official-rules text.
@@ -170,42 +187,61 @@
     return Array.isArray(ap) && ap.indexOf('contest') !== -1;
   }
 
-  function renderContest(g) {
-    // Headline + intro
-    var headline = g.contest_headline || 'Contest';
+  // `p` is the standard CMS page record for slug 935-contest, edited under
+  // Pages → Contest exactly like Home/About/Contact:
+  //   page_heading    → headline        hero_image → contest photo
+  //   page_subheading → intro line      hero_link  → photo click-through
+  //   sections[]      → official rules (markdown-lite body)
+  function renderContest(p) {
+    var headline = p.page_heading || p.title || 'Contest';
     document.getElementById('contest-headline').textContent = headline;
     document.title = headline + ' \u2014 93.5 Classic Rock';
-    if (g.contest_intro) {
+    if (p.page_subheading) {
       var introEl = document.getElementById('contest-intro');
-      introEl.textContent = g.contest_intro;
+      introEl.textContent = p.page_subheading;
       introEl.style.display = 'block';
     }
 
-    // Photo (clickable when a link is configured)
+    // Photo (clickable when a hero link is configured)
     var wrap = document.getElementById('contest-photo-wrap');
-    var photo = contestImgUrl(g.contest_photo);
+    var photo = pageImgUrl(p.hero_image);
     if (photo) {
-      var img = '<img class="contest-photo" src="' + photo + '" alt="' + headline + '" />';
-      var link = (g.contest_photo_link || '').trim();
+      var img = '<img class="contest-photo" src="' + escHtml(photo) + '" alt="'
+        + escHtml(p.hero_alt || headline) + '" />';
+      var link = safeUrl(p.hero_link);
       wrap.innerHTML = link
-        ? '<a href="' + link + '" target="_blank" rel="noopener">' + img + '</a>'
+        ? '<a href="' + escHtml(link) + '" target="_blank" rel="noopener">' + img + '</a>'
         : img;
     } else {
       wrap.innerHTML = '<div class="contest-photo-placeholder">Contest photo coming soon</div>';
     }
 
-    // Official rules
-    if (g.contest_rules && g.contest_rules.trim()) {
-      document.getElementById('contest-rules').innerHTML = renderRules(g.contest_rules);
+    // Official rules come from the page's content sections.
+    var sections = [];
+    try { sections = JSON.parse(p.sections || '[]'); } catch (e) { sections = []; }
+    var rulesHtml = sections.map(function(s) {
+      var out = '';
+      if (s && s.heading) out += '<h2>' + escHtml(s.heading) + '</h2>';
+      if (s && s.body) out += renderRules(s.body);
+      return out;
+    }).join('');
+    if (rulesHtml) {
+      document.getElementById('contest-rules').innerHTML = rulesHtml;
       document.getElementById('rules-section').style.display = 'block';
     }
   }
 
-  fetch(API_URL + '/api/station-globals/935')
-    .then(function(r) { return r.json(); })
-    .then(function(g) {
-      if (isContestLive(g)) {
-        renderContest(g);
+  // Visibility still comes from the station's active_pages flag; content now
+  // comes from the standard page record. A missing page record must not hide a
+  // page the CMS says is live, so it degrades to an empty content shell.
+  Promise.all([
+    fetch(API_URL + '/api/station-globals/935').then(function(r) { return r.json(); }),
+    fetch(API_URL + '/api/pages/935-contest').then(function(r) { return r.ok ? r.json() : {}; })
+  ])
+    .then(function(res) {
+      var globals = res[0], page = res[1];
+      if (isContestLive(globals)) {
+        renderContest(page);
         document.getElementById('contest-main').style.display = 'block';
       } else {
         document.getElementById('contest-gate').style.display = 'block';
