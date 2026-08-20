@@ -253,8 +253,20 @@
   }
 
 
+  // Banner ads are a home-page-only placement. Every caller that needs the
+  // home/inner distinction must use this — do not re-derive it inline.
+  // Cloudflare Pages serves the home page at '/' and strips '.html' from inner
+  // pages ('/pages/news'), so only '/' and a literal '/index.html' are home.
+  function isHomePage() {
+    return window.location.pathname.replace(/\/index\.html$/, '/') === '/';
+  }
+
   // ── AD BANNER ROTATOR ──────────────────────────────────────────────────────
   function initAdBanner() {
+    // Scope enforced here rather than relying on which pages happen to contain
+    // the #crr-ad-banner element.
+    if (!isHomePage()) return;
+
     fetch(API + '/api/ads/935')
       .then(function(r) { return r.json(); })
       .then(function(d) {
@@ -290,7 +302,7 @@
           var ad = ads[idx];
           var src = ad.image.startsWith('http') ? ad.image : ad.image.startsWith('/uploads/') ? 'https://pbc-cms-production.up.railway.app' + ad.image : 'https://pbc-cms-production.up.railway.app/uploads/' + ad.image.split('/').pop();
           var img = document.getElementById('935-ad-img');
-          var link = document.getElementById('kahm-ad-link');
+          var link = document.getElementById('935-ad-link');
           if (img) img.src = src;
           if (link) link.href = ad.link_url ? '/track?station=935&type=ad&label='+encodeURIComponent(ad.label||ad.link_url||'')+'&url='+encodeURIComponent(ad.link_url) : '#';
         }
@@ -357,8 +369,7 @@
       headerEl.parentNode.removeChild(headerEl);
 
       // On inner pages only: inject on-air bar after the nav
-      var isHome = window.location.pathname.endsWith('index.html') || window.location.pathname === '/';
-      if (!isHome && !document.getElementById('on-air-bar')) {
+      if (!isHomePage() && !document.getElementById('on-air-bar')) {
         var onAirHtml = '<div class="on-air-bar" id="on-air-bar" style="display:none;padding-bottom:12px;">'
           + '<span class="on-air-badge">On Air Now</span>'
           + '<span class="on-air-show" id="on-air-show"></span>'
@@ -409,7 +420,7 @@
     }, 50);
     if (footerEl) footerEl.innerHTML = buildFooter(cfg);
     // Homepage has its own hardcoded on-air bar logic — skip on index
-    if (!window.location.pathname.endsWith("index.html") && window.location.pathname !== "/") {
+    if (!isHomePage()) {
       initOnAirBar();
       // Independent track refresh for inner pages
       function refreshInnerTrack() {
