@@ -151,6 +151,11 @@
 
   // Minimal, safe markdown-lite renderer for the official-rules text.
   // Supports: # / ## / ### headings, **bold**, and blank-line paragraphs.
+  //
+  // Headings are scoped to their own line even when the author didn't leave
+  // a blank line before the following paragraph (a single \n is enough) —
+  // otherwise the heading's block would swallow the paragraph text after it
+  // and the whole thing would render bold/heading-styled.
   function renderRules(text) {
     function esc(s) {
       return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -158,16 +163,34 @@
     function inline(s) {
       return esc(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
     }
-    var blocks = text.replace(/\r\n/g, '\n').split(/\n{2,}/);
-    return blocks.map(function(b) {
-      var line = b.trim();
-      if (!line) return '';
-      if (line.indexOf('### ') === 0) return '<h3>' + inline(line.slice(4)) + '</h3>';
-      if (line.indexOf('## ')  === 0) return '<h2>' + inline(line.slice(3)) + '</h2>';
-      if (line.indexOf('# ')   === 0) return '<h1>' + inline(line.slice(2)) + '</h1>';
-      // Preserve single newlines inside a paragraph as <br>
-      return '<p>' + inline(line).replace(/\n/g, '<br>') + '</p>';
-    }).join('');
+    function headingMatch(line) {
+      if (line.indexOf('### ') === 0) return { tag: 'h3', text: line.slice(4) };
+      if (line.indexOf('## ')  === 0) return { tag: 'h2', text: line.slice(3) };
+      if (line.indexOf('# ')   === 0) return { tag: 'h1', text: line.slice(2) };
+      return null;
+    }
+    var lines = text.replace(/\r\n/g, '\n').split('\n');
+    var html = '';
+    var para = [];
+    function flush() {
+      if (para.length) {
+        html += '<p>' + inline(para.join('\n')).replace(/\n/g, '<br>') + '</p>';
+        para = [];
+      }
+    }
+    lines.forEach(function(raw) {
+      var line = raw.trim();
+      if (!line) { flush(); return; }
+      var h = headingMatch(line);
+      if (h) {
+        flush();
+        html += '<' + h.tag + '>' + inline(h.text) + '</' + h.tag + '>';
+      } else {
+        para.push(line);
+      }
+    });
+    flush();
+    return html;
   }
 
   // Private preview bypass: ?preview=1 renders the live contest content
