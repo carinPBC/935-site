@@ -54,8 +54,9 @@ footer { background: #291000 !important; }
 /* Page hero */
 .page-hero h1 { color: #291000; }
 
-/* Ad banner */
-#crr-ad-banner { background: #f5f5f5 !important; }
+/* Ad banner — must follow the station cream (--page-bg, CMS-driven) so the
+   strip blends into the page instead of reading as a grey slab. */
+#crr-ad-banner { background: var(--page-bg, #e9ba8f) !important; }
 
 /* Sticky stack */
 #crr-sticky-stack { position: sticky; top: 0; z-index: 1000; }
