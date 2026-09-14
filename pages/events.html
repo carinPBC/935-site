@@ -26,9 +26,9 @@
     .cal-btn{background:#fff;border:1.5px solid #e8ecf0;border-radius:8px;padding:8px 16px;cursor:pointer;font-size:20px;font-family:inherit;transition:background .15s;color:#111111;line-height:1;}
     .cal-btn:hover{background:#f4f6f8;}
     /* Fixed-width 7-column calendar */
-    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);border-left:1px solid #e8ecf0;border-top:1px solid #e8ecf0;margin-bottom:40px;}
+    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);border-left:1px solid #e8ecf0;border-top:1px solid #e8ecf0;margin-bottom:40px;background:#fff;}
     .cal-dow{text-align:center;font-size:11px;font-weight:700;color:#546e7a;text-transform:uppercase;padding:10px 4px;background:#f8f9fa;border-right:1px solid #e8ecf0;border-bottom:1px solid #e8ecf0;}
-    .cal-day{min-height:180px;padding:8px 6px;border-right:1px solid #e8ecf0;border-bottom:1px solid #e8ecf0;background:transparent;cursor:default;transition:background .12s;overflow:hidden;}
+    .cal-day{min-height:180px;padding:8px 6px;border-right:1px solid #e8ecf0;border-bottom:1px solid #e8ecf0;background:#fff;cursor:default;transition:background .12s;overflow:hidden;}
     .cal-day.other-month{background:#fafafa;}
     .cal-day.other-month .cal-day-num{color:#ccc;}
     .cal-day.today{background:transparent;}
@@ -46,15 +46,17 @@
     /* ── EVENTS LIST (below calendar) ── */
     .events-list-section{margin-top:8px;}
     .events-list-title{font-size:18px;font-weight:800;color:#111111;margin-bottom:20px;padding-bottom:10px;border-bottom:3px solid #a32600;display:inline-block;}
-    .events-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;}
-    .event-card{background:transparent;border-radius:8px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,.08);border-left:4px solid #a32600;}
+    .events-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;align-items:stretch;}
+    .event-card{background:#fff;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,.08);border-left:4px solid #a32600;overflow:hidden;display:flex;flex-direction:column;height:100%;text-decoration:none;color:inherit;cursor:pointer;transition:transform .15s,box-shadow .15s;}
+    .event-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.14);}
+    .event-card-img-wrap{width:100%;height:160px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;}
+    .event-card-img{width:calc(100% - 20px);height:calc(100% - 20px);object-fit:contain;display:block;}
+    .event-card-body{padding:20px;display:flex;flex-direction:column;flex:1;}
     .event-card-date{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#a32600;margin-bottom:4px;}
-    .event-card-cat{display:inline-block;padding:2px 9px;border-radius:100px;font-size:10px;font-weight:700;text-transform:uppercase;color:#fff;margin-bottom:8px;}
-    .event-card-title{font-size:15px;font-weight:700;color:#111111;line-height:1.3;margin-bottom:6px;}
+    .event-card-cat{display:inline-block;padding:2px 9px;border-radius:100px;font-size:10px;font-weight:700;text-transform:uppercase;color:#fff;margin-bottom:8px;align-self:flex-start;}
+    .event-card-title{font-size:15px;font-weight:700;color:#111111;line-height:1.3;margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
     .event-card-loc{font-size:12px;color:#546e7a;margin-bottom:6px;display:flex;align-items:center;gap:4px;}
-    .event-card-desc{font-size:13px;color:#444;line-height:1.6;margin-bottom:10px;}
-    .event-card-link{font-size:11px;font-weight:700;color:#a32600;text-transform:uppercase;letter-spacing:.05em;text-decoration:none;}
-    .event-card-link:hover{color:#315f83;}
+    .event-card-desc{font-size:13px;color:#444;line-height:1.6;margin-bottom:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
     .no-events{text-align:center;padding:40px 24px;color:#546e7a;font-size:14px;}
 
     /* ── EVENT SUBMISSION FORM ───────────────────────── */
@@ -64,7 +66,7 @@
     .event-submit-header h2 { font-size: clamp(24px,3vw,34px); font-weight: 900; color: #111111; text-transform: uppercase; letter-spacing: .03em; margin-bottom: 10px; }
     .event-submit-header h2::after { content: ''; display: block; width: 48px; height: 4px; background: #a32600; margin: 10px auto 0; }
     .event-submit-header p { font-size: 14px; color: #546e7a; line-height: 1.7; max-width: 500px; margin: 0 auto; }
-    .esf-card { background:transparent; border-radius: 12px; padding: 36px; box-shadow: 0 2px 20px rgba(0,0,0,.07); }
+    .esf-card { background:#fff; border-radius: 12px; padding: 36px; box-shadow: 0 2px 20px rgba(0,0,0,.07); }
     .esf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .esf-row.triple { grid-template-columns: 1fr 1fr 1fr; }
     .esf-field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 16px; }
@@ -359,13 +361,20 @@ function submitEventForm(e) {
     var desc = e.description ? '<div class="event-card-desc">' + e.description + '</div>' : '';
     var color = catColor(e.category);
     var catBadge = e.category ? '<div class="event-card-cat" style="background:' + color + '">' + e.category + '</div>' : '';
-    var link = e.url ? '<a href="' + e.url + '" target="_blank" class="event-card-link">More Info &rsaquo;</a>' : '';
-    return '<div class="event-card" style="border-left-color:' + color + '">'
+    var img = e.image
+      ? (e.image.indexOf('http') === 0 ? e.image : (e.image.indexOf('uploads/') === 0 ? API_URL + '/' + e.image : '../' + e.image))
+      : '../images/card-events.png';
+    var tag = e.url ? 'a' : 'div';
+    var linkAttrs = e.url ? ' href="' + e.url + '" target="_blank" rel="noopener"' : '';
+    return '<' + tag + ' class="event-card" style="border-left-color:' + color + '"' + linkAttrs + '>'
+      + '<div class="event-card-img-wrap"><img class="event-card-img" src="' + img + '" alt="' + (e.title||'').replace(/"/g,'&quot;') + '" onerror="this.src=&quot;../images/card-events.png&quot;" /></div>'
+      + '<div class="event-card-body">'
       + '<div class="event-card-date">' + dateLabel + timeStr + '</div>'
       + catBadge
       + '<div class="event-card-title">' + e.title + '</div>'
-      + loc + desc + link
-      + '</div>';
+      + loc + desc
+      + '</div>'
+      + '</' + tag + '>';
   }
 
   function renderEventCards(events, title) {
@@ -374,7 +383,7 @@ function submitEventForm(e) {
     if (titleEl) titleEl.textContent = title || 'Events';
     if (!cardsList) return;
     if (!events.length) {
-      cardsList.innerHTML = '<div class="no-results">No events this month.</div>';
+      cardsList.innerHTML = '<div class="no-events">No events this month.</div>';
     } else {
       cardsList.innerHTML = events.map(renderEventCard).join('');
     }
